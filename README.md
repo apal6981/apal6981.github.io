@@ -69,3 +69,12 @@ All new figures have exported, checked-in PNG fallback images under `assets/figu
 The hand figure uses a single connected open-hand mesh with tapered, articulated fingers, a thumb, palm and wrist. `scripts/generate-hand-mesh.py` creates `assets/js/figures/hand-mesh.js` using only Python's standard library, and validates watertight edges and a single connected component. This is original illustrative geometry; it is not a scan or the report's recovered model.
 
 The Canvas renderer interpolates vertex lighting through a reusable depth buffer, avoiding visible polygon seams. Mesh data is loaded once, only when the hand figure is present. `node scripts/browser-hand.cjs` checks the four stages at 375/768/1440 in both themes, repeated controls, reduced motion and the single local Report link. Add `--write-fallback` to refresh only the hand's PNG after an intentional mesh change. The external Original report resource was removed at the owner's request; the local PDF is retained.
+
+
+## Catcher background and two-model figure
+
+`projects/baseball-catcher.md` renders at `/projects/baseball-catcher/`. Its original source photographs/plots are configured in `_data/baseball_catcher.yml`; edit the draft and image captions there. The shared background layout reads `gallery_key`, `demo_label` and `preview_caption`, retaining the Racer's defaults when absent. Preserve Derek's experiment credits and the distinction between original images and illustrative Canvas output.
+
+`assets/js/figures/baseball-catcher.js` shows a head-on X model for left/right motion and a side Y model for elevation during approach, feeding the combined XY catch target. The schematic curves/timing are not recorded project model data. `Switch pitch` changes both target coordinates. Refresh the fallback through `node scripts/browser-catcher.cjs --write-fallback` only when intentional, then rebuild Jekyll.
+
+The browser check requires an already installed Playwright module (`PLAYWRIGHT_MODULE` may point to its absolute directory), Chromium with its debugging port at `127.0.0.1:9222`, and Jekyll at `127.0.0.1:4000`. It writes screenshots/results to ignored `artifacts/`. In this WSL session, Linux gems and Chromium are under ignored `vendor/wsl-*`; use Linux Ruby and Bundler rather than the Windows `bundle` found on PATH.

@@ -169,3 +169,12 @@ All four new project entries and original Canvas explanations are implemented, b
 ### Approved hand refinement
 
 The user requested a more recognizable hand mesh and removal of the external Original report link. Replace the initial fist assembled from ellipsoids with one continuous illustrative open hand, including palm, four fingers, thumb and wrist. Preserve the four-stage pipeline and explain that it is designed geometry rather than a recovered model. Use smooth surface shading, update the static hand fallback, and retain only the local Report resource. This revision is authorized for local implementation and a checkpoint commit under the standing commit instruction.
+
+
+### Approved catcher refinement and local background
+
+The owner corrected the catcher explanation: a head-on projection isolates left/right movement as the ball approaches, and a side projection shows elevation. Two models account for these components and combine into the XY intercept. The revised original Canvas figure synchronizes both views, grows the head-on ball during approach, and moves the catcher to the same predicted coordinates. Three pitch variants, static previews and reduced-motion stills are retained. Paths, samples and timing remain explicitly illustrative.
+
+The owner authorized a local `/projects/baseball-catcher/` background page like the Racer. Curl retrieved the full authorized source page and four original images from `drbenham.website`. The draft covers stereo calibration/detection, two model components, coordinate transformation, reported catchable-pitch results and computational tradeoffs. Derek's Kalman/Gaussian-process experiments remain credited separately; no individual role is invented for Ashton. Complete third-teammate credit remains pending. The shared background layout now accepts page-specific gallery, demo label and preview caption while retaining Racer defaults. The supplied YouTube destination is preserved without opening it.
+
+Strict root/subpath builds and local resources/anchors pass. Playwright/Chromium checks at 375/768/1440 in both themes cover synchronized models, all pitch targets, gallery decoding, repeat controls, return navigation, no-JS fallback, reduced motion, Racer layout regression and no JavaScript errors. Selected mobile/desktop/tablet screenshots were visually inspected. Browser execution uses the owner's approved command-scoped exception; no sudo, system configuration changes, installation, push or deployment occurred during this revision.

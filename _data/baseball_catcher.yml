@@ -1,0 +1,23 @@
+# Original images from https://drbenham.website/baseball_catcher.
+# Owner authorized project source text/media reuse. Preserve individual experiment credit.
+images:
+  - path: assets/images/baseball-catcher/baseball_catcher.jpg
+    width: 1125
+    height: 633
+    alt: Metal XY linear-rail catcher with a circular opening and collection net in a classroom.
+    caption: The physical XY catcher. Horizontal and vertical motion place the opening at the predicted ball intercept.
+  - path: assets/images/baseball-catcher/frame_20_ball_catcher.png
+    width: 935
+    height: 352
+    alt: Two grayscale stereo camera frames with green circles marking the ball in each image.
+    caption: Original stereo ball-detection example at frame 20. The two images are camera observations, unlike the head-on and side model projections in the animation.
+  - path: assets/images/baseball-catcher/gp_estimation.png
+    width: 657
+    height: 491
+    alt: Side-view Gaussian-process plot of ball height versus distance, with observations, mean prediction and a 95 percent confidence interval.
+    caption: Derek Benham's experimental Gaussian-process side-view prediction. The original account reports a predicted intercept 25.07 inches below the cameras and 0.837 inches left of their midpoint. This plot illustrates his experiment, not the integrated least-squares controller.
+  - path: assets/images/baseball-catcher/pitcher.jpg
+    width: 1125
+    height: 1791
+    alt: Pitching machine positioned across the classroom from the catcher.
+    caption: The pitching-machine setup used to send balls across the room toward the catcher.
