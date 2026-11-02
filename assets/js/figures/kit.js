@@ -155,7 +155,7 @@
     var cw = this.el.clientWidth || 600;
     var w = this.compact ? Math.max(cw, THUMB_W) : cw;
     /* Narrow screens get a taller canvas so the text floor has room. */
-    var aspect = cw < 480 && !this.compact ? Math.min(this.aspect, 1.25) : this.aspect;
+    var aspect = cw < 480 && !this.compact ? Math.min(this.aspect, this.cfg.mobileAspect || 1.25) : this.aspect;
     var h = Math.round(w / aspect);
     this.minFont = 10.5;
     var dpr = Math.min(window.devicePixelRatio || 1, 2);

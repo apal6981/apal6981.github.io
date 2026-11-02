@@ -20,6 +20,8 @@
 <script src="{{ '/assets/js/figures/kit.js' | relative_url }}" defer></script>
 {% assign works = site.projects | concat: site.publications %}
 {% assign figures = works | map: 'fig' | uniq %}
+{% assign engineering = works | where: 'figure_family', 'engineering' %}
+{% if engineering.size > 0 %}<script src="{{ '/assets/js/figures/engineering.js' | relative_url }}" defer></script>{% endif %}
 {% for figure in figures %}{% if figure %}<script src="{{ '/assets/js/figures/' | append: figure | append: '.js' | relative_url }}" defer></script>{% endif %}{% endfor %}
 {% endif %}
 </body></html>

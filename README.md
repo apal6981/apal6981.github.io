@@ -1,6 +1,6 @@
 # Ashton Palacios portfolio
 
-A custom Jekyll 4.4.1 portfolio, implemented locally from IMPLEMENTATION_PLAN.md. No commit, push or publication has been performed. Existing starter About/post files are preserved but excluded from output.
+A custom Jekyll 4.4.1 portfolio, implemented locally from IMPLEMENTATION_PLAN.md. Verified substantial additions are committed locally with the user's authorization; push and publication require separate authorization. Existing starter About/post files are preserved but excluded from output.
 
 ## Preview and build
 
@@ -38,7 +38,7 @@ When adding a work, copy a collection document, choose a unique filename/slug an
 
 PRODUCT.md and DESIGN.md record confirmed context and the ivory/charcoal/copper system. CSS tokens, responsive composition and theme colors live in `assets/css/site.css`; theme preference is applied before paint by `theme.js`. System mode follows the OS; explicit Light/Dark preferences persist when storage is available.
 
-The four figure definitions and shared Canvas kit were adapted from the local `christopolise.github.io` reference with the user's confirmed permission. No public license is asserted. Original code comments and complete research authorship remain. Six PDFs and the four fallback illustrations accompany the selected works. No reference portrait, CV, contact details, domain or analytics configuration was imported. Illustrative graphics retain explicit captions; they are not represented as measured results.
+The four figure definitions and shared Canvas kit were adapted from the local `christopolise.github.io` reference with the user's confirmed permission. No public license is asserted. Original code comments and complete research authorship remain. Seven PDFs and eight fallback illustrations accompany the selected works. No reference portrait, CV, contact details, domain or analytics configuration was imported. Illustrative graphics retain explicit captions; they are not represented as measured results.
 
 Local runtime fixes: system font mapping; resilient static fallback; lazy full-figure initialization within open disclosures; safe control rebuilding on restart. The SSS wave rasterizer now skips equal-height interpolation to prevent an infinite loop.
 
@@ -55,3 +55,11 @@ The lockfile was resolved on Windows. Linux resolution could not run locally bec
 For a root/custom-domain site set `url` to the actual origin and `baseurl` to an empty string; for a repository site set `baseurl` to `/repository-name`. Internal paths use `relative_url`. The manual release obtains origin/base path from Pages metadata. Canonical metadata is omitted locally while `url` is empty. No CNAME is supplied.
 
 Workflow structure checked against [GitHub's custom Pages workflow documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages); custom Bundler/Jekyll build is retained rather than the constrained branch-build stack.
+
+## Additional school projects
+
+Projects now also includes 3D Hand Reconstruction, Self-Driving RC Racer, Monocular Visual Odometry and Robot Baseball Catcher. Their original Canvas definitions share small drawing primitives in `assets/js/figures/engineering.js`, loaded only when a work uses `figure_family: engineering`. The shared kit supports optional `config.mobileAspect` for taller multipart figures on phones. Existing figures retain their original sizing.
+
+The hand report is copied byte-for-byte to `assets/3D_Reconstruction_of_Infant_Keepsakes_Report.pdf` with user permission and linked locally. Its author order is Derek Benham, Ashton Palacios. No year is inferred. The reconstruction illustration separates COLMAP pose/bounds estimation from Neuralangelo surface optimization; its adult fist is parametric geometry, not a recovered model. The three other projects preserve the exact YouTube destinations supplied by the owner. Video playback remains unverified here. Additional unnamed teammates on the racer/catcher are explicitly acknowledged; `credit_note` can be updated when names arrive.
+
+All new figures have exported, checked-in PNG fallback images under `assets/figures/`. `node scripts/browser-new-projects.cjs` checks project counts, image-click opening/reopening, six responsive/theme combinations, stage/cone/drift/pitch controls, duplicate controls and closed-figure pause. The usual dedicated local preview and Chromium CDP instance are required. Add `--write-fallbacks` only when intentionally refreshing the canonical light-theme stills after figure changes; review the generated PNGs before committing.

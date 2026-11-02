@@ -3,7 +3,7 @@
 ## Authority and current status
 
 - Read `IMPLEMENTATION_PLAN.md` before working. It is the self-contained agreed implementation specification.
-- Website implementation and local verification were explicitly authorized on November 1, 2026. The earlier documentation-only restriction is superseded. Do not commit, push or publish without authorization covering that action.
+- Website implementation and local verification are authorized. The user subsequently authorized commits after large additions to preserve rollback points. Commit verified substantial additions; do not push or publish without separate authorization.
 - The user explicitly wants ALL planned sections visible, even without content. Render clearly labeled placeholders and keep section navigation visible. Never revert to hiding empty sections.
 
 ## Product and architecture

@@ -12,3 +12,5 @@ p{text-wrap:pretty}.portrait-placeholder{padding:1rem;text-align:center}
 nav a[aria-current="location"]{color:var(--accent);text-decoration:underline;text-decoration-thickness:2px}
 
 .preview-link{display:block;cursor:pointer}.preview-link:hover{outline:1px solid var(--accent);outline-offset:3px}
+
+.fig-input-group button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}

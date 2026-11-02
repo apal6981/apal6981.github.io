@@ -2,7 +2,7 @@
 
 ## Status and authorization
 
-This document records the finalized planning decisions from the November 2026 session. Website implementation and local verification were subsequently explicitly authorized on November 1, 2026. Commit, push and publication remain unauthorized. The local implementation follows this specification.
+This document records the finalized planning decisions from the November 2026 session. Website implementation and local verification were subsequently explicitly authorized on November 1, 2026. The user subsequently authorized local commits after verified substantial additions. Push and publication remain unauthorized. The local implementation follows this specification.
 
 ## Purpose and success
 
@@ -157,3 +157,11 @@ Verified pipeline (sections III-IV): short smartphone video; COLMAP solves camer
 Refined proposed animation: orbiting camera frustums around an illustrative adult fist and textured capture plane; sparse SfM points and a selectable bounding sphere; transition to a separately represented coarse surface, then finer surface detail; cleaned printable model and a schematic layer-by-layer print. Stage controls: Capture / Camera poses / Neural surface / Print. Avoid suggesting the COLMAP points are directly meshed by Neuralangelo. Camera layout, geometry and training progress are illustrative, not actual recovered model data or a real-time training benchmark. Preserve the approved rotating model concept and the existing figure kit's controls, still preview, reduced-motion fallback and accessible captions.
 
 Final addition scope for user review: these four new Projects only; existing Projects/Publications and sticky ATP navigation preserved; three exact user-supplied video links retained; hand report copied to a public asset and linked as Report during implementation. Unnamed additional teammates on racer/catcher remain unresolved and must not be silently omitted through a false complete author list. Use explicit known-collaborator credit with additional team credit pending. No claim is made that YouTube playback has been independently verified. Await the user's implementation go-ahead after presenting this refined, source-validated plan.
+
+### Implementation and commit authorization
+
+After making the initial commit, the user explicitly authorized implementation of all four additional projects and requested commits after large additions. This supersedes the pending-implementation language above. Commit the verified four-project addition locally; no push or deployment is authorized.
+
+### Four-project implementation outcome
+
+All four new project entries and original Canvas explanations are implemented, bringing Projects to seven entries and preserving the existing publication. The hand report is a public local resource; exact video destinations are preserved. Four canonical PNG stills provide no-JS/Canvas fallbacks. The runtime gains opt-in mobile aspect ratios; existing figures retain previous sizing. Full figures are tested at 375/768/1440 in both themes, with stage/cone/drift/pitch controls and repeat-cycle checks. See VALIDATION.md for evidence and outstanding external-link/CI limits.

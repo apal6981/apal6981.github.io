@@ -32,6 +32,11 @@ for url in page.urls:
 for excluded in ['AGENTS.md','IMPLEMENTATION_PLAN.md','PRODUCT.md','DESIGN.md','README.md','VALIDATION.md','Gemfile','Gemfile.lock','about','scripts','.agents','.codex','.impeccable','.browser-qa','.browser-qa2','artifacts']:
  assert not (root/excluded).exists(),f'Published private file: {excluded}'
 assert not (root/'2026').exists(),'Starter post published'
-assert len(list((root/'assets').glob('*.pdf')))==6
+for pdf in ['GM_v2.pdf','SSS_poster.pdf','opengl_bellhop.pdf','opengl_bellhop_presentation.pdf','WiLiE.pdf','WiLiE_Presentation.pdf','3D_Reconstruction_of_Infant_Keepsakes_Report.pdf']:
+ assert (root/'assets'/pdf).is_file(),f'Missing report: {pdf}'
+for slug in ['hand-reconstruction','rc-racer','visual-odometry','baseball-catcher']:
+ assert 'work-'+slug in page.ids,f'Missing new project: {slug}'
+for video in ['https://www.youtube.com/watch?v=fXM8YLXXC4w','https://www.youtube.com/shorts/FXYg8f1PFv4','https://www.youtube.com/watch?v=24IoHJpjovY&feature=youtu.be']:
+ assert video in page.urls,f'Missing supplied demo: {video}'
 assert (root/'404.html').is_file()
 print(f'PASS: {root}; {len(page.urls)} local/external URLs inspected; all sections, IDs, local resources and exclusions valid')

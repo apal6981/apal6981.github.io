@@ -30,3 +30,15 @@ Ignored `artifacts/` contains viewport/expanded-figure screenshots, `browser-res
 ## Header and section revision
 
 ATP wordmark, sticky header, current-section indication, and header-aware anchor offsets checked in headless Chrome at 375/768/1440 in both themes. Header top stays at zero after scrolling; Projects heading remains below it, with no horizontal overflow. Projects contains three works including SSS; Posters and Teaching and their navigation links are removed. Root/subpath strict builds, local resources and JavaScript syntax pass after the revision.
+
+## Four school-project addition
+
+- Strict production builds and output checks pass at root and `/portfolio-check`; local image/report resources resolve and all three exact owner-supplied video URLs remain present. There are now seven Projects and one Publication. All seven PDFs are checked explicitly rather than requiring an arbitrary total that would reject future additional reports.
+- The hand PDF matches the staged source byte-for-byte. Seven pages were read before implementation; camera poses/region selection are distinct from neural surface generation, and adult-hand results are distinguished from unprocessed newborn footage. No year is invented.
+- New figures were rendered in headless Chrome at 375, 768, 1440 CSS pixels, Light and Dark (24 expanded-figure captures). Mobile layouts were enlarged after visual inspection to avoid cramped subpanels; labels and controls remain visible with no page overflow.
+- New project image clicks open/reopen the correct disclosure, including when the hash is unchanged. Hand stage buttons, racer cone toggle, odometry drift slider and catcher pitch control change their states. Three close/open/restart cycles do not duplicate controls. Closed figures pause; the normal run reports zero JavaScript errors.
+- Existing figure controls and all six original figure layout combinations were rechecked after the opt-in runtime sizing extension. Keyboard disclosure/focus, SSS deep linking, persisted/system themes, reduced-motion stills, injected Canvas failure, blocked storage and no-JS image visibility pass across the expanded page.
+- Four PNG stills were exported from the actual Canvas drawings and committed as intentional fallback assets, not QA captures. Development screenshot/JSON results remain ignored under `artifacts/`.
+- Limits remain: headless Chrome rather than physical-device or cross-engine testing; YouTube playback unverified; Linux CI/Pages deployment not run. Racer/catcher third teammate names remain pending and are acknowledged visibly. No push or deployment authorized.
+
+Rendered Impeccable review after the addition flagged the approved ivory palette and two existing long-line warnings in the SSS description/caption. These are recorded as presentation polish, not failures of project content or figure interaction.
