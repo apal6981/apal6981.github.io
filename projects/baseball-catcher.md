@@ -5,7 +5,7 @@ project_slug: baseball-catcher
 permalink: /projects/baseball-catcher/
 gallery_key: baseball_catcher
 demo_label: Watch the catcher demo
-preview_caption: Illustrative head-on and side projections of one pitch, combined into an XY catch target.
+preview_caption: Illustrative head-on stereo observations feeding lateral and elevation models for one XY catch target.
 description: Stereo ball tracking and separate lateral and elevation models for an XY robot catcher.
 ---
 
@@ -23,9 +23,11 @@ The integrated pipeline used contour area to locate the ball. Derek Benham's ini
 
 ## Two models for one pitch
 
-We ran separate models to account for lateral motion and elevation. From a head-on perspective, the ball comes toward the catcher while moving left or right. A side view makes the change in height during that approach visible. Both models refer to the same ball and the same arrival at the catcher plane.
+Both stereo cameras watched the ball come toward the catcher from the pitcher. Each image contained both left/right and vertical motion. The cameras did not observe the pitch from the side.
 
-The animation separates these dimensions deliberately: the head-on X projection isolates left/right movement, and the side Y projection shows height against progress toward the catcher. Their predictions combine into one XY target. The displayed curves and samples are illustrative, rather than a replay of the project's fitted coefficients or a reconstruction of camera footage.
+We modeled lateral motion and elevation separately using positions reconstructed from those same stereo observations. Together, the two models predicted where the ball would reach the catcher plane and set the mechanism's XY target.
+
+The animation keeps both camera views head-on. The catcher view shows the ball shifting sideways and changing height together, growing as it approaches. The two small model graphs plot lateral position and elevation against time; they are derived predictions, not additional camera viewpoints. Camera images, curves and timing are schematic rather than recorded project output.
 
 ## Predict, transform and move
 

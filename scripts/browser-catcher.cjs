@@ -30,7 +30,8 @@ const fs=require('node:fs');
  for(let pitch=0;pitch<3;pitch++){
  const start=await draw(0),middle=await draw(3),end=await draw(6.5);
  check('one synchronized approach, pitch '+pitch,start.q===0&&middle.q>0&&middle.q<1&&end.q===1);
- check('elevation falls during approach, pitch '+pitch,end.y<start.y);
+ check('head-on approach gets closer with increasing stereo disparity, pitch '+pitch,end.depth<start.depth&&end.disparity>start.disparity);
+ check('same head-on pitch changes both lateral position and height, pitch '+pitch,end.x!==start.x&&end.y<start.y);
  check('catcher reaches both coordinates, pitch '+pitch,Math.abs(end.catcherX-end.targetX)<1e-8&&Math.abs(end.catcherY-end.targetY)<1e-8);
  targets.push([end.targetX,end.targetY]);
  await page.locator('#details-baseball-catcher button').filter({hasText:'Switch pitch'}).click();

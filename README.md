@@ -78,3 +78,6 @@ The Canvas renderer interpolates vertex lighting through a reusable depth buffer
 `assets/js/figures/baseball-catcher.js` shows a head-on X model for left/right motion and a side Y model for elevation during approach, feeding the combined XY catch target. The schematic curves/timing are not recorded project model data. `Switch pitch` changes both target coordinates. Refresh the fallback through `node scripts/browser-catcher.cjs --write-fallback` only when intentional, then rebuild Jekyll.
 
 The browser check requires an already installed Playwright module (`PLAYWRIGHT_MODULE` may point to its absolute directory), Chromium with its debugging port at `127.0.0.1:9222`, and Jekyll at `127.0.0.1:4000`. It writes screenshots/results to ignored `artifacts/`. In this WSL session, Linux gems and Chromium are under ignored `vendor/wsl-*`; use Linux Ruby and Bundler rather than the Windows `bundle` found on PATH.
+
+
+Catcher perspective correction: both stereo frames face the incoming ball. The main catcher view shows lateral and vertical motion together; small X/time and elevation/time plots are derived from the same stereo observations. There is no side camera in the animation. This supersedes the earlier head-on/side description.

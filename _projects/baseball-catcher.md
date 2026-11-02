@@ -8,8 +8,8 @@ figure_family: engineering
 figure: assets/figures/baseball-catcher.png
 fig: baseball-catcher
 fig_aspect: 16/9
-fig_label: A head-on projection shows left and right ball motion, a synchronized side view shows elevation during approach, and both models set the XY catch target.
-fig_caption: '<strong>Two models, one catch.</strong> The ball comes toward the catcher. The head-on X projection isolates left/right motion; the side Y projection shows elevation as the ball approaches. Both models predict one intercept at the catcher plane, moving the XY mechanism into position. These are views of the same pitch, not two camera feeds. Switch the pitch to change both target coordinates. The paths, samples and timing are illustrative, not recorded model output or a measured catch-rate demonstration.'
+fig_label: Both stereo cameras watch the ball approaching head-on, moving horizontally and vertically. Two coordinate-versus-time models predict left/right position and elevation, guiding the catcher to one XY intercept.
+fig_caption: '<strong>Watch the pitch come toward the catcher.</strong> Both stereo cameras face the pitcher and observe the same approaching ball. Stereo positions feed separate models for left/right motion and elevation. The small graphs show those coordinates against time, while the catcher view shows both movements together and the ball growing as it approaches. Both predictions set one XY catch target. Switch the pitch to change the target. Camera images, paths, samples and timing are schematic, not recorded project data.'
 fig_illustrative: true
 about: A three-person class team built a vision pipeline for a catcher mounted on an XY linear-rail system. Stereo images were used to detect and triangulate a pitched ball, estimate its trajectory, and transform the predicted landing point into the catcher's coordinate frame.
 year: 2022

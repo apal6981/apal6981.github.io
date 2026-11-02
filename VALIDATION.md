@@ -58,3 +58,10 @@ All four stages pass at 375/768/1440 in both themes (24 captures), with no page 
 - The static catcher PNG was refreshed from the revised Canvas. Four source image files were decoded and their dimensions verified. The source page and same-host media were retrieved with curl; YouTube playback was not tested.
 - The browser command ran with the same explicit command-scoped sandbox exception approved for Racer. No dependency installation, sudo, system changes or publication. Coverage remains headless Chromium, not physical hardware, Safari/Firefox or screen-reader certification.
 - During test development an ambiguous no-JS image selector was narrowed to the preview image; scrolling the tall mobile figure and allowing resize to settle corrected a blank QA capture. These were test-harness corrections. Final checks passed.
+
+
+## Catcher head-on stereo correction
+
+The side-perspective animation was rejected and replaced with two head-on camera frames, a head-on catcher showing both lateral and vertical ball motion, and derived X/time and elevation/time plots. Both cameras see the incoming ball; growing disparity and ball size indicate approach. The plots are not camera feeds. The source Gaussian-process plot in the gallery remains separately credited as an experimental artifact. The static fallback, caption and background explanation were updated to match.
+
+Corrected figure verification: 33 Playwright checks passed, including decreasing approach depth/increasing stereo disparity, simultaneous lateral and vertical movement, and XY arrival alignment for all three pitches. Mobile/desktop screenshots were visually inspected. Root/subpath strict builds and local-resource/anchor checks pass after refreshing the PNG fallback.
