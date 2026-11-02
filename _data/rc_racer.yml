@@ -1,0 +1,29 @@
+# Original project images downloaded from the authorized drbenham.website source.
+# Source page: https://drbenham.website/ecen_racer
+# Imported with the owner's permission; preserve shared project credit.
+images:
+  - path: assets/images/rc-racer/race-thumbnail.png
+    width: 213
+    height: 135
+    alt: Red RC car on a carpeted track bordered by blue pool noodles.
+    caption: The RC racing platform on the classroom track. Original video thumbnail.
+  - path: assets/images/rc-racer/camera-frame.png
+    width: 640
+    height: 480
+    alt: Camera frame from the RC car showing the carpet, colored track boundaries and cones.
+    caption: An original camera frame used to illustrate the processing pipeline.
+  - path: assets/images/rc-racer/obstacle-mask.png
+    width: 320
+    height: 250
+    alt: Binary obstacle mask separating the colored boundaries and cones from the driving area.
+    caption: Combined binary color thresholds isolate the track boundaries and obstacles.
+  - path: assets/images/rc-racer/binned-obstacles.png
+    width: 144
+    height: 68
+    alt: Low-resolution binary grid of the detected obstacles.
+    caption: The reduced obstacle grid lowers the cost of calculating distances for planning.
+  - path: assets/images/rc-racer/distance-planning.png
+    width: 581
+    height: 291
+    alt: Clearance heatmap overlaid with blue local search points, green global search points and red steering lines.
+    caption: Darker regions indicate less clearance and brighter regions more. Blue points show the local greedy search; green points show the global search. Red shows the fitted line and dashed red the steering direction, as described in the original project account.

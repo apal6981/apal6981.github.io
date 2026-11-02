@@ -1,0 +1,25 @@
+---
+layout: base
+---
+{% assign project = site.projects | where: 'slug', page.project_slug | first %}
+<article class="wrap project-story">
+  <a class="back-link" href="{{ '/' | relative_url }}#work-{{ page.project_slug }}">Back to Projects</a>
+  <header class="story-heading">
+    <h1>{{ page.title }}</h1>
+    <p class="story-summary">{{ project.summary }}</p>
+    <p class="authors">{{ project.authors }}</p>
+    <p class="venue">{{ project.venue }}{% if project.year %} · {{ project.year }}{% endif %}</p>
+    {% if project.credit_note %}<p class="credit">{{ project.credit_note }}</p>{% endif %}
+    {% for resource in project.links %}{% if resource.text == 'Demo' %}<a href="{{ resource.url | escape }}">Watch the race</a>{% endif %}{% endfor %}
+  </header>
+  <figure class="story-preview">
+    <a href="{{ '/' | relative_url }}#details-{{ page.project_slug }}" aria-label="Open the interactive racer figure"><img src="{{ project.figure | relative_url }}" alt="{{ project.fig_label | escape }}" width="1040" height="585"></a>
+    <figcaption>Illustrative track and planning view. <a href="{{ '/' | relative_url }}#details-{{ page.project_slug }}">Explore the interactive figure</a>.</figcaption>
+  </figure>
+  <div class="story-body">{{ content }}</div>
+  {% assign gallery = site.data.rc_racer.images %}
+  <section class="story-gallery" aria-labelledby="gallery-heading">
+    <h2 id="gallery-heading">Project images</h2>
+    {% for item in gallery %}<figure><img src="{{ item.path | relative_url }}" alt="{{ item.alt | escape }}" width="{{ item.width }}" height="{{ item.height }}" style="max-width: {{ item.width }}px" loading="lazy"><figcaption>{{ item.caption | escape }}</figcaption></figure>{% else %}<p class="empty-state">Project photographs and image-processing frames to be added.</p>{% endfor %}
+  </section>
+</article>
