@@ -1,0 +1,4 @@
+{% assign rows = site.data.profile[include.section.id] %}
+{% if include.section.id == 'experience' %}{% assign rows = site.data.profile.experience | concat: site.data.profile.education %}{% endif %}
+{% if include.section.id == 'awards' %}{% assign rows = site.data.profile.awards | concat: site.data.profile.skills %}{% endif %}
+{% for row in rows %}<article class="resume-row"><h3>{{ row.title | escape }}</h3>{% if row.date %}<p class="muted">{{ row.date | escape }}</p>{% endif %}<p>{{ row.description | escape }}</p></article>{% else %}<p class="empty-state">{{ include.section.placeholder }}</p>{% endfor %}

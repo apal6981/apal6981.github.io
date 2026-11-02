@@ -1,0 +1,5 @@
+<header class="site-header wrap">
+<a class="wordmark" href="{{ '/' | relative_url }}" aria-label="Ashton Palacios home">ATP<span aria-hidden="true">.</span></a>
+<nav aria-label="Portfolio sections"><a href="{{ '/#introduction' | relative_url }}">Introduction</a>{% for section in site.data.profile.sections %}<a href="{{ '/' | relative_url }}#{{ section.id }}">{{ section.title }}</a>{% endfor %}<a href="{{ '/#contact' | relative_url }}">Contact</a></nav>
+<button class="theme-control" type="button" data-theme-control hidden>Theme: System</button>
+</header>

@@ -1,0 +1,50 @@
+# Jekyll output and caches
+/_site/
+/_site-subpath/
+/.jekyll-cache/
+/.jekyll-metadata
+/.sass-cache/
+
+# Installed Ruby dependencies and machine-specific Bundler settings
+/vendor/
+/.bundle/
+
+# Local agent skills, hooks, source staging and design-session state
+/.agents/
+/.codex/
+/.impeccable/*
+!/.impeccable/config.json
+
+# Browser profiles and generated QA captures/reports
+/.browser-qa*/
+/artifacts/
+
+# Optional local development dependencies and Python caches
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local environment files (keep documented templates)
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Editor, OS and temporary files
+/.idea/
+/.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+~$*
+*.swp
+*.swo
+*~
+*.tmp
+*.log
+
+# Keep Gemfile.lock, .github workflows, project documentation,
+# website source, and intentional assets (including PDFs) in version control.

@@ -1,0 +1,34 @@
+title: Ashton Palacios
+description: Selected engineering projects, publications and posters by Ashton Palacios and collaborators.
+url: ""
+baseurl: ""
+markdown: kramdown
+collections:
+  projects:
+    output: false
+  publications:
+    output: false
+exclude:
+  - AGENTS.md
+  - IMPLEMENTATION_PLAN.md
+  - PRODUCT.md
+  - DESIGN.md
+  - README.md
+  - VALIDATION.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .agents
+  - .codex
+  - .impeccable
+  - .github
+  - scripts
+  - _posts
+  - about.markdown
+  - node_modules
+  - package.json
+  - package-lock.json
+  - artifacts
+  - .browser-qa
+  - .browser-qa2
+  - _site-subpath

@@ -1,0 +1,56 @@
+name: Portfolio checks and manual Pages release
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '4.0.9'
+          bundler: '4.0.23'
+      # The supplied lockfile was resolved on Windows. Add Linux variants
+      # without updating the locked dependency versions, then install.
+      - run: bundle lock --add-platform x86_64-linux
+      - run: bundle install
+      - name: Check root and repository-subpath output
+        env:
+          JEKYLL_ENV: production
+        run: |
+          bundle exec jekyll build --strict_front_matter
+          python3 scripts/check-output.py _site
+          bundle exec jekyll build --strict_front_matter --baseurl /portfolio-check --destination _site-subpath
+          python3 scripts/check-output.py _site-subpath /portfolio-check
+      - name: Configure Pages for manual release
+        if: github.event_name == 'workflow_dispatch'
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Build release with Pages metadata
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          JEKYLL_ENV: production
+          SITE_URL: ${{ steps.pages.outputs.origin }}
+          SITE_BASEURL: ${{ steps.pages.outputs.base_path }}
+        run: bundle exec jekyll build --strict_front_matter --url "$SITE_URL" --baseurl "$SITE_BASEURL"
+      - uses: actions/upload-pages-artifact@v4
+        if: github.event_name == 'workflow_dispatch'
+        with:
+          path: _site
+  deploy:
+    if: github.event_name == 'workflow_dispatch'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

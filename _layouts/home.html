@@ -1,0 +1,17 @@
+---
+layout: base
+---
+<div class="wrap">
+<section class="introduction" id="introduction" aria-labelledby="intro-title">
+<div><h1 id="intro-title">Ashton<br>Palacios<span class="period">.</span></h1><p class="intro-text">{{ site.data.profile.introduction }}</p>
+{% if site.data.profile.biography %}<p>{{ site.data.profile.biography }}</p>{% else %}<p class="muted">Biography to be added.</p>{% endif %}
+<div class="personal-links">{% if site.data.profile.resume %}<a href="{{ site.data.profile.resume | relative_url }}">Resume</a>{% else %}<span>Resume to be added</span>{% endif %}{% for link in site.data.profile.social %}<a href="{{ link.url | escape }}">{{ link.title }}</a>{% else %}<span>Social links to be added</span>{% endfor %}</div></div>
+<div class="intro-aside">{% if site.data.profile.portrait %}<img src="{{ site.data.profile.portrait | relative_url }}" alt="Ashton Palacios">{% else %}<div class="portrait-placeholder"><span>Portrait to be added</span></div>{% endif %}<p>Explore the work below.<br>Open a project to interact with its figure.</p></div>
+</section>
+{% for section in site.data.profile.sections %}
+<section class="portfolio-section" id="{{ section.id }}" aria-labelledby="heading-{{ section.id }}">
+{% include section-heading.html section=section %}
+{% if section.collection %}{% assign entries = site[section.collection] | sort: 'order' %}{% for work in entries %}{% include work.html work=work %}{% endfor %}
+{% else %}{% include resume-rows.html section=section %}{% endif %}
+</section>{% endfor %}
+</div>

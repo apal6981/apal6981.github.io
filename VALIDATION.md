@@ -1,0 +1,32 @@
+# Local validation - November 1, 2026
+
+## Passed
+
+- Windows Ruby 4.0.9 / Bundler 4.0.23: local dependency installation and Jekyll 4.4.1 strict-front-matter production builds at root and `/portfolio-check`.
+- Standard-library output checker: all current planned section anchors, unique IDs/scripts, internal resource paths, six local PDFs, styled 404 and publication exclusions. Starter About/post content remains on disk but is absent from output.
+- Headless Chrome screenshots and layout measurements at 375, 768, 1440 CSS pixels in Light and Dark, plus expanded figures at all six combinations. No horizontal page overflow. Selected desktop/mobile/tablet captures visually inspected.
+- Four still previews at initial load; full canvases initialize only when a disclosure opens. Three repeated open/close/restart cycles leave three buttons per full figure, with no duplicates. Normal browser checks recorded no JavaScript errors.
+- Acoustic profile, antenna, replay-attack and ring/wave controls change state. A reused SSS wave interpolation bug hung the renderer when adjacent heights matched; fixed and all four controls retested successfully.
+- Native disclosure activated with synthesized Enter; visible keyboard focus verified. SSS deep link opens its disclosure. Closed figures pause.
+- System Dark follows emulated OS preference; explicit Light survives reload. Reduced-motion mode produces nonplaying, meaningful still frames.
+- Injected Canvas failure preserves fallback images across all figures. Injected unavailable localStorage leaves the theme control usable. JavaScript-disabled reload preserves static image fallbacks. Expected Canvas errors during fault injection are not normal-load errors.
+- Body/secondary/tertiary/accent and placeholder text token contrast calculated in both themes. Minimum tested ratio 5.03:1; primary text approximately 14.2:1. This does not certify every animated pixel or screen-reader behavior.
+- JavaScript syntax checks; complete shared authorship retained, Ashton emphasized, equal-contribution note preserved, synthetic data labeled.
+
+## Impeccable review
+
+Context and new-work/craft-floor guidance applied within the already finalized user brief. Concept service unavailable; no external challenger boards were returned. Static detector flags for section padding were false positives from logical `padding-block`; rendered sections have ample spacing. Rendered detector found the deliberately approved ivory background and two advisory line-wrap findings. The ivory commitment is retained, and `text-wrap: pretty` was added. A centered portrait placeholder has explicit padding. Rendered screenshots informed the review; detector output is not treated as proof of visual quality.
+
+## Limits
+
+- Browser evidence is headless Chrome on this Windows host, using emulated viewport/media settings and synthesized keyboard input. No physical phone, touch gesture suite, Safari/Firefox, screen reader, full WCAG audit or performance certification was performed. Canvas labels have text alternatives and detailed captions; small previews are navigation context rather than the full reading surface.
+- The kit retains viewport observation and pauses tick advancement offscreen. Closed-state pause is explicitly exercised; exhaustive offscreen timing and dynamic reduced-motion changes during a live session are not certified.
+- External code/docs/video/publisher destinations were preserved from source, not individually verified. Local PDFs and images were checked. No claims about external link availability are made.
+- Network access to RubyGems is denied, preventing generation/testing of Linux platform variants. CI resolves that platform before install but has not run. First CI execution remains required before release.
+- No Git remote, production origin, Pages setup, deployment or external hosting behavior was tested. No commits, pushes or publication performed.
+
+Ignored `artifacts/` contains viewport/expanded-figure screenshots, `browser-results.json`, `extended-results.json`, and detector reports. Scripts are retained under `scripts/` for repeatable local checks; no heavy test framework or Node build dependency was added.
+
+## Header and section revision
+
+ATP wordmark, sticky header, current-section indication, and header-aware anchor offsets checked in headless Chrome at 375/768/1440 in both themes. Header top stays at zero after scrolling; Projects heading remains below it, with no horizontal overflow. Projects contains three works including SSS; Posters and Teaching and their navigation links are removed. Root/subpath strict builds, local resources and JavaScript syntax pass after the revision.

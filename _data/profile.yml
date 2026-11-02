@@ -1,0 +1,28 @@
+name: Ashton Palacios
+introduction: Selected work in wireless systems, scientific visualization and interactive hardware.
+biography:
+portrait:
+resume:
+social: []
+contact:
+sections:
+  - id: projects
+    title: Projects
+    collection: projects
+  - id: publications
+    title: Publications
+    collection: publications
+  - id: research
+    title: Research and current work
+    placeholder: Research and current work details to be added.
+  - id: experience
+    title: Experience and education
+    placeholder: Experience and education details to be added.
+  - id: awards
+    title: Awards and skills
+    placeholder: Awards and skills details to be added.
+research: []
+experience: []
+education: []
+awards: []
+skills: []
