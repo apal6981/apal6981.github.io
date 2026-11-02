@@ -42,3 +42,9 @@ ATP wordmark, sticky header, current-section indication, and header-aware anchor
 - Limits remain: headless Chrome rather than physical-device or cross-engine testing; YouTube playback unverified; Linux CI/Pages deployment not run. Racer/catcher third teammate names remain pending and are acknowledged visibly. No push or deployment authorized.
 
 Rendered Impeccable review after the addition flagged the approved ivory palette and two existing long-line warnings in the SSS description/caption. These are recorded as presentation polish, not failures of project content or figure interaction.
+
+## Hand mesh revision
+
+The first-draft disconnected-looking ellipsoids were replaced with one continuous open-hand surface (5,690 vertices / 11,376 triangles). Offline topology checks confirm every mesh edge is shared by two faces and all vertices form one connected component. The generator preserves these checks for future edits. Smooth interpolated vertex lighting and a depth buffer replace the faceted painter-style rendering; the print stage clips the surface at the layer height.
+
+All four stages pass at 375/768/1440 in both themes (24 captures), with no page overflow or JavaScript errors. Selected mobile/desktop captures were visually reviewed. Reopening/restarting does not duplicate controls, and reduced motion shows the still at 13 seconds. Average measured redraw was approximately 5 ms on this host in the dedicated browser check; this is a local timing sample, not a device-wide performance guarantee. A refreshed hand PNG supplies the static fallback. Root/subpath strict builds and URL checks pass. The resource list contains only the local PDF link; the external Original report link is absent. Other projects and their assets were not changed.

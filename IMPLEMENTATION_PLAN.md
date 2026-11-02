@@ -165,3 +165,7 @@ After making the initial commit, the user explicitly authorized implementation o
 ### Four-project implementation outcome
 
 All four new project entries and original Canvas explanations are implemented, bringing Projects to seven entries and preserving the existing publication. The hand report is a public local resource; exact video destinations are preserved. Four canonical PNG stills provide no-JS/Canvas fallbacks. The runtime gains opt-in mobile aspect ratios; existing figures retain previous sizing. Full figures are tested at 375/768/1440 in both themes, with stage/cone/drift/pitch controls and repeat-cycle checks. See VALIDATION.md for evidence and outstanding external-link/CI limits.
+
+### Approved hand refinement
+
+The user requested a more recognizable hand mesh and removal of the external Original report link. Replace the initial fist assembled from ellipsoids with one continuous illustrative open hand, including palm, four fingers, thumb and wrist. Preserve the four-stage pipeline and explain that it is designed geometry rather than a recovered model. Use smooth surface shading, update the static hand fallback, and retain only the local Report resource. This revision is authorized for local implementation and a checkpoint commit under the standing commit instruction.
