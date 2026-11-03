@@ -9,7 +9,7 @@ await send('Emulation.setScriptExecutionDisabled',{value:false});await send('Run
 const ids=['hand-reconstruction','rc-racer','visual-odometry','baseball-catcher'];
 const results=[];function check(name,pass,details){results.push({name,pass,details});if(!pass)throw Error(name+': '+JSON.stringify(details));}
 fs.mkdirSync('artifacts',{recursive:true});fs.mkdirSync('assets/figures',{recursive:true});
-check('seven projects and ten total works',await evaluate(`document.querySelectorAll('#projects .work').length===7&&document.querySelectorAll('.work').length===10`));
+check('seven projects and thirteen total works',await evaluate(`document.querySelectorAll('#projects .work').length===7&&document.querySelectorAll('.work').length===13`));
 for(const id of ids){
  await evaluate(`document.querySelector('#work-${id} .preview-link').click()`);await delay(70);
  check('preview opens '+id,await evaluate(`document.getElementById('details-${id}').open`));

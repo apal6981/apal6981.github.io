@@ -11,7 +11,7 @@ const fs=require('node:fs');
  async function state(slug){return page.evaluate(slug=>{const f=Fig.instances.find(f=>!f.compact&&f.el.dataset.fig===slug);return {stage:f.state.stage,particles:f.state.particles,truth:f.state.truth,beacon:f.state.beacon,halted:f.state.halted,probability:f.state.movingProbability,buttons:f.root.querySelectorAll('button').length,playing:f.playing};},slug);}
  try{
  await page.goto('http://127.0.0.1:4000/');
- check('three publications',await page.locator('#publications .work').count()===3);
+ check('six publications',await page.locator('#publications .work').count()===6);
  for(const slug of ['acoustic-localization','lora-localization']){
  const work=page.locator('#work-'+slug),details=page.locator('#details-'+slug);
  await work.locator('.preview-link').click();

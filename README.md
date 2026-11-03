@@ -98,3 +98,14 @@ Publication animation pacing: `localization.js` advances one phase every 0.3 sec
 LoRa stopped behavior now uses very small process jitter when the signal-history classifier selects stopped, so continued measurement updates can concentrate the particle cloud. Resuming motion restores greater propagation uncertainty. The illustration remains a toy model.
 
 The LEO figure separates the main antenna lobe (to a user terminal) from fixed-angle sidelobe leakage passing over the observatory. Its local fallback is `assets/figures/ghost-modulation.png`. `scripts/browser-ghost.cjs` checks this geometry and the normal/replay interaction; the intentional `--write-fallback` option exports the PNG. The two localization entries and research pages retain local PDFs and include the owner's supplied IEEE Xplore links.
+
+
+## WLSK, coordination subprotocol and Ghost Modulation channel
+
+New publication entries and matching local research pages use slugs `wireless-latency`, `spectral-coordination` and `ghost-channel`. Their figure scripts live in `assets/js/figures/`; each uses the existing shared Canvas kit and engineering primitives. Toggle the WLSK bit, honor/ignore the coordination request, or compare clean/delayed/dropped events in the conceptual channel illustration. All timings and signal samples are schematic, with no actual network traffic generated.
+
+Unchanged local source PDFs for WLSK, spectral coordination and the related Stealthy Signals workshop paper are in `assets/papers/`. The workshop PDF/ACM link and its distinct full author credits are attached to the existing LEO entry. The Allerton channel paper retains the owner's exact IDEALS publication-record link and hosts the supplied arXiv preprint at `assets/papers/ghost-channel-arxiv.pdf`. The file's earlier 2024 title, An Information Theoretic Analysis of Ghost Modulation, is explicit in the UI. The animation illustrates its per-symbol heuristic, including erasure when multiple events arrive; it does not reproduce acquisition or coded BER simulations.
+
+`_layouts/publication-background.html` supports `preview_caption`, `contribution_focus`, optional `source_figure` metadata, and `paper_url` when no local `link` is supplied. The spectral coordination page records the owner's confirmed subprotocol focus; other individual details remain placeholders.
+
+Run `scripts/browser-new-publications.cjs` with the existing Playwright/CDP setup to check six theme/viewport combinations, control behavior, resource links, local PDFs, contribution headings, return navigation, reduced motion and no-JS fallbacks. `--write-fallback` intentionally regenerates the three PNG stills. The older publication/project suite counts now expect six publications and thirteen total works.

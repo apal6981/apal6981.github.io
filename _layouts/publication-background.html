@@ -8,20 +8,21 @@ layout: base
     <h1>{{ publication.title }}</h1>
     <p class="story-summary">{{ publication.summary }}</p>
     <p class="authors">{{ publication.authors }}</p>
-    <p class="venue">{{ publication.venue }} · {{ publication.year }}</p>
-    <a href="{{ publication.link | relative_url }}">Read the paper (PDF)</a>
-    {% for resource in publication.links %}{% if resource.text == "IEEE Xplore" %}<p><a href="{{ resource.url | escape }}">Published version on IEEE Xplore</a></p>{% endif %}{% endfor %}
+    <p class="venue">{{ publication.venue }}{% assign year_text = publication.year | append: "" %}{% unless publication.venue contains year_text %} · {{ publication.year }}{% endunless %}</p>
+    {% if publication.link %}<a href="{{ publication.link | relative_url }}">{{ page.local_paper_label | default: "Read the paper (PDF)" }}</a>{% else %}<a href="{{ publication.paper_url | escape }}">Read the paper in IDEALS</a>{% endif %}
+    {% for resource in publication.links %}{% if resource.text == "IEEE Xplore" or resource.text == "ACM Digital Library" or resource.text == "IDEALS repository" %}<p><a href="{{ resource.url | escape }}">Published version on {{ resource.text }}</a></p>{% endif %}{% endfor %}
+    {% if page.paper_version_note %}<p class="credit">{{ page.paper_version_note }}</p>{% endif %}
   </header>
   <figure class="story-preview">
     <a href="{{ '/' | relative_url }}#details-{{ publication.slug }}" aria-label="Explore the interactive {{ publication.title | escape }} figure"><img src="{{ publication.figure | relative_url }}" alt="{{ publication.fig_label | escape }}" width="1040" height="585"></a>
-    <figcaption>Illustrative signal field, route and particle filter. <a href="{{ '/' | relative_url }}#details-{{ publication.slug }}">Explore the interactive explanation</a>.</figcaption>
+    <figcaption>{{ page.preview_caption | default: "Illustrative signal field, route and particle filter." }} <a href="{{ '/' | relative_url }}#details-{{ publication.slug }}">Explore the interactive explanation</a>.</figcaption>
   </figure>
   <div class="story-body">{{ content }}
-    <section aria-labelledby="contributions-heading"><h2 id="contributions-heading">Individual contributions</h2><p class="empty-state">Ashton's individual contribution details to be added. The explanation above describes the shared research.</p></section>
+    <section aria-labelledby="contributions-heading"><h2 id="contributions-heading">Individual contributions</h2><p class="empty-state">{{ page.contribution_focus | default: "Ashton's individual contribution details to be added. The explanation above describes the shared research." }}</p></section>
   </div>
-  <section class="story-gallery" aria-labelledby="original-figure-heading">
+  {% if page.source_figure %}<section class="story-gallery" aria-labelledby="original-figure-heading">
     <h2 id="original-figure-heading">Research overview</h2>
     <figure><img src="{{ page.source_figure | relative_url }}" alt="{{ page.source_figure_alt | escape }}" width="{{ page.source_figure_width | default: 548 }}" height="{{ page.source_figure_height | default: 357 }}" style="max-width: {{ page.source_figure_width | default: 548 }}px" loading="lazy"><figcaption>{{ page.source_figure_caption }}</figcaption></figure>
     <p><a href="{{ publication.link | relative_url }}">Read the full paper (PDF)</a> for methods, figures, results and references.</p>
-  </section>
+  </section>{% endif %}
 </article>
