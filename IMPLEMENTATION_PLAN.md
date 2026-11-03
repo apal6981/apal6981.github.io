@@ -170,6 +170,25 @@ All four new project entries and original Canvas explanations are implemented, b
 
 The user requested a more recognizable hand mesh and removal of the external Original report link. Replace the initial fist assembled from ellipsoids with one continuous illustrative open hand, including palm, four fingers, thumb and wrist. Preserve the four-stage pipeline and explain that it is designed geometry rather than a recovered model. Use smooth surface shading, update the static hand fallback, and retain only the local Report resource. This revision is authorized for local implementation and a checkpoint commit under the standing commit instruction.
 
+### Racer expansion and local background page
+
+The user authorized more cones in the racer animation and a separate local project-background page with a first-draft account and original imagery from Derek's source, to be refined later. This supersedes the v1 restriction against standalone project pages for this project. Keep the homepage work entry and disclosure, add `/projects/rc-racer/`, replace only the racer's external Project background resource with that local URL, and preserve the owner's YouTube demo link without opening it.
+
+Five cones and alternating avoidance make the schematic track more varied. Original image import is blocked: the authorized source request to `https://drbenham.website/ecen_racer` returns "Unable to connect to the remote server." Do not bypass this restriction. The background page uses the already retrieved project description for a limited paraphrased draft, an explicitly illustrative local animation still, and a visible original-image placeholder. `_data/rc_racer.yml` can hold local image paths, alt text and captions when the source images are available. No personal contribution claims are copied from Derek's first-person account.
+
+External reference access is now limited to `https://kitras.dev` and `https://drbenham.website`. Other external sites/repositories require user permission before access. Existing external resource links may remain as links without being accessed. No push or publication authorized.
+
+The user's preference against linking to Derek's website also removes the remaining external background links on Visual Odometry and Robot Baseball Catcher. Their demo links and project content are retained; no new background pages are created for those works in this revision.
+
+
+### Racer source import — curl access restored
+
+On November 1, 2026, the owner authorized curl as a fallback after the web retrieval tool failed. `curl -vL --max-time 15 https://drbenham.website/ecen_racer -o /tmp/ecen_racer.html` returned HTTP 200. The full page was read and its five original project images downloaded from the same authorized host into `assets/images/rc-racer/`. This supersedes the earlier source-access blocker. The local background page now describes perception, planning, recovery and source-reported team race results. Derek's individually described planning work remains explicitly credited; Ashton's individual role and the third teammate's name remain pending. No analytics, external site styling or unrelated images were imported.
+
+Image formats/dimensions and local gallery paths were checked; the gallery preserves native image sizes and descriptive alternatives. The browser check now expects five decoded original images instead of an empty placeholder. Fresh strict Jekyll builds and browser review are pending in this Linux session: required gems are absent, and Windows Ruby/Chrome fail to launch through WSL (`UtilBindVsockAnyPort: socket failed`). Previous Windows verification does not certify this update. No push or publication performed.
+
+Additional local checks passed: the actual Liquid layout and Kramdown Markdown render at root and `/portfolio-check` using locally available pure-Ruby libraries; all five original image URLs are correctly prefixed and the empty-gallery placeholder is absent. PNG decoding, recorded dimensions, alt text/captions and browser-check JavaScript syntax pass. This isolated render is not a full Jekyll build or browser review.
+
 
 ### Approved catcher refinement and local background
 

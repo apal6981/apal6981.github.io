@@ -8,7 +8,7 @@
 
 ## Product and architecture
 
-- Owner: Ashton Palacios. Audience: engineering employers. Single scrolling portfolio with Projects and Publications and visible future personal/resume sections.
+- Owner: Ashton Palacios. Audience: engineering employers. Single scrolling portfolio with Projects and Publications, visible future personal/resume sections, and a local racer background page.
 - Jekyll 4.4.1, GitHub Pages via GitHub Actions, reusable Liquid layouts/includes, Markdown collections and YAML data, plain CSS, minimal vanilla JavaScript. No SPA framework or Node build pipeline.
 - Independent ivory/charcoal/copper design, code-first, responsive desktop/mobile, accessible System/Light/Dark mode with persisted explicit preferences.
 - Use the installed `.agents/skills/impeccable/SKILL.md` for design work. Follow user constraints over conflicting skill workflow instructions; do not create implementation artifacts during documentation-only tasks.
@@ -30,3 +30,7 @@
 - Inspect rendered layouts at 375px, 768px and 1440px in both themes. Check keyboard/focus, reduced motion, fallbacks, deep links and repeated figure interactions. Report limits honestly.
 - Production deployment is manual initially. Do not silently deploy on source pushes or inherit the reference's CNAME/analytics configuration.
 - Keep documentation synchronized with approved changes. Ask only about material missing decisions; do not re-ask settled preferences.
+
+## External access
+
+- External reference access is limited to https://kitras.dev and https://drbenham.website. Ask before accessing any other external website or repository. Preserve existing resource links without opening unapproved destinations. If a resource is inaccessible, report the error; do not bypass network restrictions.

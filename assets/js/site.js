@@ -3,7 +3,8 @@
   var links = Array.from(header.querySelectorAll('nav a'));
   var sections = links.map(function(link) { return document.getElementById(link.hash.slice(1)); });
   function updateLocation() {
-    var edge = header.getBoundingClientRect().bottom + 48, current = null;
+    var edge = header.getBoundingClientRect().bottom + 48;
+    var current = document.querySelector('.project-story') ? links.findIndex(function(link){return link.hash === '#projects';}) : null;
     sections.forEach(function(section, index) { if(section && section.getBoundingClientRect().top <= edge) current = index; });
     if (Math.ceil(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight - 2) current = sections.length - 1;
     links.forEach(function(link, index) { if(index === current) link.setAttribute('aria-current','location'); else link.removeAttribute('aria-current'); });

@@ -49,6 +49,22 @@ The first-draft disconnected-looking ellipsoids were replaced with one continuou
 
 All four stages pass at 375/768/1440 in both themes (24 captures), with no page overflow or JavaScript errors. Selected mobile/desktop captures were visually reviewed. Reopening/restarting does not duplicate controls, and reduced motion shows the still at 13 seconds. Average measured redraw was approximately 5 ms on this host in the dedicated browser check; this is a local timing sample, not a device-wide performance guarantee. A refreshed hand PNG supplies the static fallback. Root/subpath strict builds and URL checks pass. The resource list contains only the local PDF link; the external Original report link is absent. Other projects and their assets were not changed.
 
+## Racer cones and background page
+
+- Five cones, alternating avoidance, upcoming-cone map, plural add/remove control and refreshed racer fallback implemented. Repeated disclosure/restart cycles keep three buttons without duplication.
+- Local `/projects/rc-racer/` draft replaces the external racer background destination; remaining external background links to Derek's site were also removed. Existing YouTube demo destinations remain unchanged and were not accessed. The local page retains team credit, an illustrative still, body sections and a configurable empty gallery.
+- Headless Chrome checks pass at 375/768/1440 in both themes for animation and background-page overflow, navigation to the local page and back to the correct project, no JavaScript errors and reduced-motion stills. Screenshots of the racer and page were visually inspected. Root/subpath strict builds and local-resource/anchor checks cover all three generated HTML pages (home, background, 404).
+- Original-image import remains incomplete because the authorized source download failed: `Invoke-WebRequest https://drbenham.website/ecen_racer` -> "Unable to connect to the remote server." The page explicitly leaves original project images to be added. No bypass, unapproved host/repository access or fabricated source photographs. Source-based prose uses the previously retrieved description and does not assign Derek's individual work to Ashton.
+
+
+### Racer source import — curl access restored
+
+On November 1, 2026, the owner authorized curl as a fallback after the web retrieval tool failed. `curl -vL --max-time 15 https://drbenham.website/ecen_racer -o /tmp/ecen_racer.html` returned HTTP 200. The full page was read and its five original project images downloaded from the same authorized host into `assets/images/rc-racer/`. This supersedes the earlier source-access blocker. The local background page now describes perception, planning, recovery and source-reported team race results. Derek's individually described planning work remains explicitly credited; Ashton's individual role and the third teammate's name remain pending. No analytics, external site styling or unrelated images were imported.
+
+Image formats/dimensions and local gallery paths were checked; the gallery preserves native image sizes and descriptive alternatives. The browser check now expects five decoded original images instead of an empty placeholder. Fresh strict Jekyll builds and browser review are pending in this Linux session: required gems are absent, and Windows Ruby/Chrome fail to launch through WSL (`UtilBindVsockAnyPort: socket failed`). Previous Windows verification does not certify this update. No push or publication performed.
+
+Additional local checks passed: the actual Liquid layout and Kramdown Markdown render at root and `/portfolio-check` using locally available pure-Ruby libraries; all five original image URLs are correctly prefixed and the empty-gallery placeholder is absent. PNG decoding, recorded dimensions, alt text/captions and browser-check JavaScript syntax pass. This isolated render is not a full Jekyll build or browser review.
+
 
 ## Catcher models and background page — WSL verification
 

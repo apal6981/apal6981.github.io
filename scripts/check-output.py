@@ -40,3 +40,26 @@ for video in ['https://www.youtube.com/watch?v=fXM8YLXXC4w','https://www.youtube
  assert video in page.urls,f'Missing supplied demo: {video}'
 assert (root/'404.html').is_file()
 print(f'PASS: {root}; {len(page.urls)} local/external URLs inspected; all sections, IDs, local resources and exclusions valid')
+
+# Standalone background pages must work with either hosting prefix too.
+parsed = {}
+for html in root.rglob('*.html'):
+ document = Page(); document.feed(html.read_text(encoding='utf-8'))
+ assert len(document.ids) == len(set(document.ids)), f'Duplicate IDs: {html}'
+ parsed[html.resolve()] = document
+for html, document in parsed.items():
+ for url in document.urls:
+  u = urlsplit(url)
+  if u.scheme or u.netloc: continue
+  if not u.path: target = html
+  else:
+   assert u.path.startswith(base+'/'), f'Wrong subpath in {html}: {url}'
+   target = root / unquote(u.path[len(base):].lstrip('/'))
+   if target.is_dir(): target = target/'index.html'
+   assert target.is_file(), f'Missing local URL in {html}: {url}'
+  if u.fragment and target.resolve() in parsed:
+   assert unquote(u.fragment) in parsed[target.resolve()].ids, f'Missing anchor in {html}: {url}'
+assert (root/'projects/rc-racer/index.html').is_file()
+assert (root/'projects/baseball-catcher/index.html').is_file()
+assert not any('drbenham.website' in url for document in parsed.values() for url in document.urls)
+print(f'PASS: local resources and cross-page anchors in {len(parsed)} generated HTML pages')

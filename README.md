@@ -27,7 +27,7 @@ No Node build or frontend framework is required. Generated `_site`, `_site-subpa
 
 - `_data/profile.yml`: introduction, biography, portrait path, resume path, social links (`title`, `url`) and contact URL (including `mailto:` if appropriate). Blank values show honest placeholders.
 - `research`, `experience`, `education`, `awards`, `skills` are lists of records with `title`, optional `date`, and `description`. Populating them replaces placeholders without template changes. Preserve the section list and IDs to retain navigation/deep links.
-- `_projects`, `_publications`: one Markdown document per work, ordered newest first by `year`, with numeric `order` breaking ties. Collections render into the homepage, with no standalone work pages.
+- `_projects`, `_publications`: one Markdown document per work, ordered newest first by `year`, with numeric `order` breaking ties. Collections render into the homepage. The racer additionally has a standalone background page under `projects/rc-racer.md`.
 - Work metadata preserves the reference field names: `authors`, `venue`, `year`, `link`, `link_label`, `links` (`text`, `url`, `note`), `figure` (fallback path), `fig`, `fig_aspect`, `fig_label`, `fig_caption`, `fig_illustrative`, `about` or `abstract`, and `first_author`. Added fields are `order` and `summary` (a short project-level description).
 - Longer prose can go in the Markdown body. Keep author order and equal-contribution markers. Emphasize Ashton without dropping shared credit. Do not invent individual roles or personal credentials.
 - Work deep links: `#work-bellhop`, `#work-wilie`, `#work-ghost-modulation`, `#work-sss`; disclosure links start with `#details-` and the same slug.
@@ -69,6 +69,16 @@ All new figures have exported, checked-in PNG fallback images under `assets/figu
 The hand figure uses a single connected open-hand mesh with tapered, articulated fingers, a thumb, palm and wrist. `scripts/generate-hand-mesh.py` creates `assets/js/figures/hand-mesh.js` using only Python's standard library, and validates watertight edges and a single connected component. This is original illustrative geometry; it is not a scan or the report's recovered model.
 
 The Canvas renderer interpolates vertex lighting through a reusable depth buffer, avoiding visible polygon seams. Mesh data is loaded once, only when the hand figure is present. `node scripts/browser-hand.cjs` checks the four stages at 375/768/1440 in both themes, repeated controls, reduced motion and the single local Report link. Add `--write-fallback` to refresh only the hand's PNG after an intentional mesh change. The external Original report resource was removed at the owner's request; the local PDF is retained.
+
+## Racer background and image gallery
+
+`projects/rc-racer.md` is the editable draft at `/projects/rc-racer/`, using `_layouts/project-background.html`. Its homepage resource link opens the local page, while the existing preview/title still opens the interactive disclosure. The background page returns to the correct homepage project. The demo remains a normal external link and was not opened during this revision. All external Derek-site background links were removed according to the owner's preference.
+
+Five configured cones in `rc-racer.js` make the schematic path alternate inside/outside; the local planning panel shows upcoming obstacles. The single toggle removes/adds all cones. The static racer PNG was regenerated.
+
+Original source access now works through curl. Five original images are stored in `assets/images/rc-racer/`, with `path`, `width`, `height`, `alt` and `caption` in `_data/rc_racer.yml`. The gallery keeps native image sizes, while the animation still remains explicitly illustrative. The expanded draft covers perception, planning, recovery and source-reported race results; Derek's individual planning work stays credited. The owner's individual-role details and remaining teammate name still need editing. Fresh Jekyll/browser verification of the image import is pending in the current Linux environment; see VALIDATION.md.
+
+`node scripts/browser-racer.cjs` verifies the five-cone toggle, repeated controls, local background navigation, return link, media preferences and six viewport/theme combinations. `--write-fallback` intentionally refreshes the racer PNG only. Output checks cover every generated HTML page and its cross-page anchors at root and subpath prefixes.
 
 
 ## Catcher background and two-model figure

@@ -16,8 +16,6 @@ year: 2022
 links:
 - text: Demo
   url: https://www.youtube.com/watch?v=fXM8YLXXC4w
-- text: Project background
-  url: https://drbenham.website/vo
 ---
 
 Processing was performed offline rather than on the car's constrained onboard computer, and did not fuse IMU or wheel-odometry measurements. The source describes drift during jittery turns and compares a separate test dataset with established ground truth; the RC-car run itself did not have a complete ground-truth trajectory.

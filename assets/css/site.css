@@ -14,3 +14,5 @@ nav a[aria-current="location"]{color:var(--accent);text-decoration:underline;tex
 .preview-link{display:block;cursor:pointer}.preview-link:hover{outline:1px solid var(--accent);outline-offset:3px}
 
 .fig-input-group button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
+
+.project-story{padding-block:3rem 5rem}.back-link{display:inline-block;font-size:.88rem;margin-bottom:2rem}.story-heading{max-width:54rem}.story-heading h1{font-size:clamp(2.6rem,5vw,4.8rem);margin-bottom:1.5rem}.story-summary{font-size:1.2rem;max-width:50ch}.story-preview{margin:3rem 0;max-width:60rem}.story-preview img{width:100%;height:auto}.story-body{max-width:65ch}.story-body h2,.story-gallery h2{font-size:clamp(1.8rem,3vw,2.3rem);margin:2.8rem 0 1rem}.story-body p{margin-bottom:1.2rem}.story-gallery{margin-top:3rem;border-top:1px solid var(--line);max-width:60rem}.story-gallery figure{margin:2rem 0}.story-gallery img{width:100%;height:auto}
