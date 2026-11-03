@@ -23,7 +23,7 @@ const fs=require('node:fs');
  check(`${slug} no figure overflow ${width} ${theme}`,await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  await page.screenshot({path:`artifacts/${slug}-${width}-${theme}.png`});
  }
- await page.evaluate(slug=>{const f=Fig.instances.find(f=>!f.compact&&f.el.dataset.fig===slug);f.t=15;f.redraw();},slug);
+ await page.evaluate(slug=>{const f=Fig.instances.find(f=>!f.compact&&f.el.dataset.fig===slug);f.t=f.cfg.stillAt;f.redraw();},slug);
  if(process.argv.includes('--write-fallback')){
  await page.evaluate(()=>{document.documentElement.dataset.theme='light';window.dispatchEvent(new Event('themechange'));});
  const data=await details.locator('canvas').evaluate(c=>c.toDataURL('image/png'));

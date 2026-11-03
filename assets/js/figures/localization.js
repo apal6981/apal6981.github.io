@@ -46,7 +46,7 @@
  }
  Fig.localization=function(id,urban){
   Fig.register(id,{
-   config:{mobileAspect:.55,stillAt:15},
+   config:{mobileAspect:.55,stillAt:3.75},
    setup:function(f){
     initialize(f);
     f.button('Step filter',function(){f.playing=false;f._sync();advance(f,urban);f.redraw();});
@@ -56,7 +56,7 @@
    reset:function(f){initialize(f);if(f.inputs){var b=f.inputs.querySelectorAll('button')[1];if(b)b.textContent=f.state.halted?'Resume the robot':'Stop the robot';}},
    draw:function(f,t){
     var s=f.state;if(!s.particles){initialize(f);s=f.state;}
-    var bucket=Math.floor(t/1.2);
+    var bucket=Math.floor(t/.3);
     if(bucket<s.clock){initialize(f);s=f.state;}
     // A paused manual step retains its state until the next authored clock boundary.
     if(bucket>s.clock){for(var step=s.clock+1;step<=Math.min(bucket,s.clock+75);step++)advance(f,urban);s=f.state;s.clock=bucket;}
@@ -64,14 +64,20 @@
     D.start(f,urban?'LoRa signals → motion and location':'Acoustic RSS → location belief');
     var map={x:18,y:52,w:narrow?f.w-36:f.w*.60,h:narrow?f.h*.37:f.h-108};
     D.box(f,map.x,map.y,map.w,map.h,C.line,C.bg);
-    // Display a synthetic per-beacon field as a low-opacity heatmap, never range rings.
-    var b=s.beacon;
-    for(var y=0;y<24;y++)for(var x=0;x<30;x++){
-     var value=(field((x+.5)/30,(y+.5)/24,b)+90)/50;
-     c.fillStyle=f.alpha(C.signal,.04+Math.max(0,Math.min(1,value))*.25);
-     var x0=Math.floor(map.x+x*map.w/30),y0=Math.floor(map.y+y*map.h/24);
-     c.fillRect(x0,y0,Math.floor(map.x+(x+1)*map.w/30)-x0,Math.floor(map.y+(y+1)*map.h/24)-y0);
+    // Cache the field until beacon, size or theme changes; particles animate independently.
+    var b=s.beacon,key=[b,map.w,map.h,C.signal].join('|');
+    if(!f.signalMap||f.signalMap.key!==key){
+     var surface=document.createElement('canvas');surface.width=Math.ceil(map.w);surface.height=Math.ceil(map.h);
+     var brush=surface.getContext('2d');
+     for(var y=0;y<24;y++)for(var x=0;x<30;x++){
+      var value=(field((x+.5)/30,(y+.5)/24,b)+90)/50;
+      brush.fillStyle=f.alpha(C.signal,.04+Math.max(0,Math.min(1,value))*.25);
+      var x0=Math.floor(x*map.w/30),y0=Math.floor(y*map.h/24);
+      brush.fillRect(x0,y0,Math.floor((x+1)*map.w/30)-x0,Math.floor((y+1)*map.h/24)-y0);
+     }
+     f.signalMap={key:key,canvas:surface};
     }
+    c.drawImage(f.signalMap.canvas,map.x,map.y);
     function project(p){return {x:map.x+p.x*map.w,y:map.y+p.y*map.h};}
     if(urban){
      [[.32,.19,.15,.16],[.57,.62,.16,.16]].forEach(function(v){D.box(f,map.x+map.w*v[0],map.y+map.h*v[1],map.w*v[2],map.h*v[3],C.lineStrong,f.alpha(C.ink,.08));});

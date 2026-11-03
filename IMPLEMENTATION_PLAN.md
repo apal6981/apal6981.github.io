@@ -194,3 +194,8 @@ Approved concepts: acoustic top-down marina with four beacons and a particle fil
 The actual papers were downloaded from the approved drbenham.website host, read for method/results and copied byte-for-byte into assets/papers. Original overview graphics from the same host accompany the deeper pages. Exact paper author order is retained. Acoustic caveats: two-dimensional experiments used a surface WAM-V with submerged modem, GPS reference/heading and sequential modem polling; the proposed one-way measurement method is distinct from the implemented polling setup. Table I reports 17.4 m mean RSS error versus 21.3 m bearing-only. LoRa: moving/stopped classification rather than direct distance regression; 2.57 m RMSE on five adjacent-prior-data segments, 6.74 m across three without adjacent coverage. The building-route experiment uses an approximated path, not reliable full-route ground truth.
 
 Implementation uses two collection documents, a reusable publication-background layout, two research pages and shared localization.js figure support loaded once before the two definitions. Contributions remain placeholders; no individual claims are invented. PDFs remain local resources; no external publisher/repository lookup was required.
+
+
+### Publication animation pacing refinement
+
+The owner requested faster acoustic and LoRa animation playback. Both now advance each filter stage every 0.3 seconds instead of 1.2 seconds, reducing a complete cycle from 3.6 to 0.9 seconds. Only these figures change speed. Step, play/pause and stop/resume controls remain available. Signal-map rendering is cached until the active beacon, figure dimensions or theme changes. Reduced-motion/thumbnail timing is retimed to preserve the previous still state.
