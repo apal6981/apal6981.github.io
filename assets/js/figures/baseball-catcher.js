@@ -12,7 +12,7 @@
     draw:function(f,t){
       var C=f.c,c=f.ctx,narrow=f.w<480;
       D.start(f,'Head-on stereo → predict X and Y');
-      var q=f.compact?.68:Math.min(1,(t%9)/6.5),pitch=f.state.pitch;
+      var q=f.compact&&!f.playing?.68:Math.min(1,(t%9)/6.5),pitch=f.state.pitch;
       var current=sample(q,pitch),target=sample(1,pitch),ready=q>=.22;
       var move=Math.min(1,Math.max(0,(q-.22)/.64));move=move*move*(3-2*move);
       var catcher={x:target.x*move,y:.5+(target.y-.5)*move};

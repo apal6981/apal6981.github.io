@@ -27,10 +27,10 @@
     reset:function(){},
     draw:function(f,t){
       var C=f.c,c=f.ctx,narrow=f.w<480;
-      var stage=f.compact?2:(f.state.stage<0?Math.floor(t/5)%4:f.state.stage);
+      var stage=f.compact&&!f.playing?2:(f.state.stage<0?Math.floor(t/5)%4:f.state.stage);
       var progress=f.state.stage<0?(t%5)/5:.78;
       D.start(f,'From video to a printable keepsake');
-      var angle=.30+(f.compact?.35:Math.sin(t*.2)*.65),cx=f.w*(narrow?.5:.38),cy=f.h*(narrow?.46:.53),scale=Math.min(f.w*(narrow?.23:.18),f.h*(narrow?.175:.21));
+      var angle=.30+(f.compact&&!f.playing?.35:Math.sin(t*.2)*.65),cx=f.w*(narrow?.5:.38),cy=f.h*(narrow?.46:.53),scale=Math.min(f.w*(narrow?.23:.18),f.h*(narrow?.175:.21));
       function project(p){return D.project(p.x,p.y,p.z,angle,cx,cy,scale);}
       if(stage===0){
         // Distinct colored feature patches on a capture plane support pose recovery.

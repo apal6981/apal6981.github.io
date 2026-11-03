@@ -29,7 +29,7 @@
       }
       var tx=narrow?18:f.w*.60,ty=narrow?top+fh+38:top,tw=narrow?f.w-36:f.w-tx-24,th=narrow?f.h-ty-28:f.h-ty-57;
       D.text(f,'Accumulated trajectory',tx,ty-9,C.ink2,11);D.box(f,tx,ty,tw,th,C.line,C.bg);
-      var reference=[],estimate=[],progress=f.compact?.91:(t%14)/14;
+      var reference=[],estimate=[],progress=f.compact&&!f.playing?.91:(t%14)/14;
       for(var i=0;i<=90;i++){
         var q=i/90,a=q*Math.PI*1.85,x=tx+tw*(.49+.34*Math.cos(a)),y=ty+th*(.51+.34*Math.sin(a));reference.push({x:x,y:y});
         if(q<=progress)estimate.push({x:x+tw*.22*(f.state.drift/100)*q,y:y-th*.26*(f.state.drift/100)*q});

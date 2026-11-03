@@ -1,6 +1,7 @@
 ---
 order: 4
 title: 3D Hand Reconstruction
+year: 2024
 authors: Derek Benham, <strong>Ashton Palacios</strong>
 venue: Semester project, Brigham Young University
 summary: From smartphone video to a detailed surface model and a printable keepsake.

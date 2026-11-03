@@ -118,13 +118,14 @@
   Figure.prototype._hoverPlay = function () {
     var self = this, card = this.el.closest("[data-hover-play]");
     if (reduced || !card) return;
-    function off() { self.playing = false; }
+    function start() { if (!self.playing) self.restart(true); }
+    function off() { self.playing = false; self.last = 0; self.t = self.cfg.stillAt || 0; self.redraw(); self._sync(); }
     card.addEventListener("pointerenter", function (e) {
-      if (canHover && e.pointerType === "mouse" && !card.classList.contains("is-open")) self.playing = true;
+      if (canHover && e.pointerType === "mouse" && !card.classList.contains("is-open")) start();
     });
     card.addEventListener("pointerleave", off);
     card.addEventListener("focusin", function (e) {
-      if (e.target.matches && e.target.matches(":focus-visible") && !card.classList.contains("is-open")) self.playing = true;
+      if (e.target.matches && e.target.matches(":focus-visible") && !card.classList.contains("is-open")) start();
     });
     card.addEventListener("focusout", off);
   };

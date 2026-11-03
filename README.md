@@ -27,7 +27,7 @@ No Node build or frontend framework is required. Generated `_site`, `_site-subpa
 
 - `_data/profile.yml`: introduction, biography, portrait path, resume path, social links (`title`, `url`) and contact URL (including `mailto:` if appropriate). Blank values show honest placeholders.
 - `research`, `experience`, `education`, `awards`, `skills` are lists of records with `title`, optional `date`, and `description`. Populating them replaces placeholders without template changes. Preserve the section list and IDs to retain navigation/deep links.
-- `_projects`, `_publications`: one Markdown document per work, ordered by numeric `order`. Collections render into the homepage, with no standalone work pages.
+- `_projects`, `_publications`: one Markdown document per work, ordered newest first by `year`, with numeric `order` breaking ties. Collections render into the homepage, with no standalone work pages.
 - Work metadata preserves the reference field names: `authors`, `venue`, `year`, `link`, `link_label`, `links` (`text`, `url`, `note`), `figure` (fallback path), `fig`, `fig_aspect`, `fig_label`, `fig_caption`, `fig_illustrative`, `about` or `abstract`, and `first_author`. Added fields are `order` and `summary` (a short project-level description).
 - Longer prose can go in the Markdown body. Keep author order and equal-contribution markers. Emphasize Ashton without dropping shared credit. Do not invent individual roles or personal credentials.
 - Work deep links: `#work-bellhop`, `#work-wilie`, `#work-ghost-modulation`, `#work-sss`; disclosure links start with `#details-` and the same slug.
@@ -109,3 +109,12 @@ Unchanged local source PDFs for WLSK, spectral coordination and the related Stea
 `_layouts/publication-background.html` supports `preview_caption`, `contribution_focus`, optional `source_figure` metadata, and `paper_url` when no local `link` is supplied. The spectral coordination page records the owner's confirmed subprotocol focus; other individual details remain placeholders.
 
 Run `scripts/browser-new-publications.cjs` with the existing Playwright/CDP setup to check six theme/viewport combinations, control behavior, resource links, local PDFs, contribution headings, return navigation, reduced motion and no-JS fallbacks. `--write-fallback` intentionally regenerates the three PNG stills. The older publication/project suite counts now expect six publications and thirteen total works.
+
+
+## Chronology and preview playback
+
+Homepage work collections sort by year descending; numeric order is only the tie-breaker within a year. Hand reconstruction is dated 2024 by owner confirmation. Keep year metadata factual; no exact dates are inferred from an undated report.
+
+Preview links use data-hover-play. Mouse hover and visible keyboard focus start playback from the beginning, and mouse leave/focus loss restore stillAt. Initial reduced-motion preferences suppress previews; touch taps open the full disclosure. Do not hardcode a compact figure to a still pose while it is playing. The channel diagram includes a time cursor so the clean case visibly previews without altering its bit decisions.
+
+`scripts/browser-order-hover.cjs` checks ordering and all thirteen previews with real browser mouse movement, advancing timestamps and changed canvas pixels, then checks return-to-still, keyboard focus, touch and reduced motion. Captures/results go under ignored artifacts.

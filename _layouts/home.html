@@ -11,7 +11,7 @@ layout: base
 {% for section in site.data.profile.sections %}
 <section class="portfolio-section" id="{{ section.id }}" aria-labelledby="heading-{{ section.id }}">
 {% include section-heading.html section=section %}
-{% if section.collection %}{% assign entries = site[section.collection] | sort: 'order' %}{% for work in entries %}{% include work.html work=work %}{% endfor %}
+{% if section.collection %}{% assign entries = site[section.collection] | sort: 'order' %}{% assign year_groups = entries | group_by: 'year' | sort: 'name' | reverse %}{% for group in year_groups %}{% for work in group.items %}{% include work.html work=work %}{% endfor %}{% endfor %}
 {% else %}{% include resume-rows.html section=section %}{% endif %}
 </section>{% endfor %}
 </div>

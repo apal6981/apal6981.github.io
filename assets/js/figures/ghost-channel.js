@@ -15,6 +15,7 @@
     var x=18,y=63+bit*rowHeight,slotW=width/3,h=rowHeight-55;
     D.text(f,'Sent '+bit,x,y-10,C.ink,12,650);
     ['0 slot','1 slot','Guard'].forEach(function(label,i){D.box(f,x+i*slotW,y,slotW,h,C.line,i===2?C.sunk:C.bg);D.text(f,label,x+i*slotW+6,y+19,C.ink2,11);});
+    if(f.playing)D.line(f,[{x:x+phase*width,y:y+24},{x:x+phase*width,y:y+h}],f.alpha(C.ink3,.35),1);
     var sent=bit===0?.16:.49,received=sent+(mode===1?.30:0),shown=sent+(received-sent)*phase;
     var erased=mode>=2||received>=2/3,decoded=erased?'?':(received<1/3?'0':'1');outcomes.push(decoded);
     D.line(f,[{x:x+sent*width,y:y+29},{x:x+sent*width,y:y+h-9}],C.signal,1.2,true);
