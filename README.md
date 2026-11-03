@@ -81,3 +81,12 @@ The browser check requires an already installed Playwright module (`PLAYWRIGHT_M
 
 
 Catcher perspective correction: both stereo frames face the incoming ball. The main catcher view shows lateral and vertical motion together; small X/time and elevation/time plots are derived from the same stereo observations. There is no side camera in the animation. This supersedes the earlier head-on/side description.
+
+
+## Acoustic and LoRa publications
+
+Edit `_publications/acoustic-localization.md` and `_publications/lora-localization.md` for homepage metadata, complete author credits, summaries and captions. Deeper explanations are in `publications/`, rendered by `_layouts/publication-background.html` at `/publications/acoustic-localization/` and `/publications/lora-localization/`. The layout includes the local paper links and an Individual contributions placeholder; replace that placeholder with owner-supplied text when available. Original overview graphics are in `assets/images/localization/`; byte-identical source PDFs are in `assets/papers/`.
+
+`assets/js/figures/localization.js` implements the shared educational particle filter. Its irregular signal fields and moving/stopped classifier are synthetic substitutes to explain the papers' GP/GMM pipeline, not trained research models. The two short figure definitions select acoustic or urban behavior. The acoustic update uses one beacon at a time; LoRa can combine four observations and exposes a robot stop/resume control. `Step filter` pauses playback and advances motion, measurement or resampling. The synthetic reference marker is an explanatory reference, not a position measurement supplied to the filter.
+
+With the existing local Jekyll/CDP setup and installed Playwright module, run `node scripts/browser-publications.cjs`; `PLAYWRIGHT_MODULE` can identify the installed module directory. The optional `--write-fallback` refreshes the two intentional PNG assets, then requires a Jekyll rebuild. Results and viewport/theme captures go under ignored `artifacts/`. No frontend build pipeline or production Node dependency is introduced.

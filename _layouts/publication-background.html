@@ -1,0 +1,26 @@
+---
+layout: base
+---
+{% assign publication = site.publications | where: 'slug', page.publication_slug | first %}
+<article class="wrap project-story">
+  <a class="back-link" href="{{ '/' | relative_url }}#work-{{ publication.slug }}">Back to Publications</a>
+  <header class="story-heading">
+    <h1>{{ publication.title }}</h1>
+    <p class="story-summary">{{ publication.summary }}</p>
+    <p class="authors">{{ publication.authors }}</p>
+    <p class="venue">{{ publication.venue }} · {{ publication.year }}</p>
+    <a href="{{ publication.link | relative_url }}">Read the paper (PDF)</a>
+  </header>
+  <figure class="story-preview">
+    <a href="{{ '/' | relative_url }}#details-{{ publication.slug }}" aria-label="Explore the interactive {{ publication.title | escape }} figure"><img src="{{ publication.figure | relative_url }}" alt="{{ publication.fig_label | escape }}" width="1040" height="585"></a>
+    <figcaption>Illustrative signal field, route and particle filter. <a href="{{ '/' | relative_url }}#details-{{ publication.slug }}">Explore the interactive explanation</a>.</figcaption>
+  </figure>
+  <div class="story-body">{{ content }}
+    <section aria-labelledby="contributions-heading"><h2 id="contributions-heading">Individual contributions</h2><p class="empty-state">Ashton's individual contribution details to be added. The explanation above describes the shared research.</p></section>
+  </div>
+  <section class="story-gallery" aria-labelledby="original-figure-heading">
+    <h2 id="original-figure-heading">Research overview</h2>
+    <figure><img src="{{ page.source_figure | relative_url }}" alt="{{ page.source_figure_alt | escape }}" width="{{ page.source_figure_width | default: 548 }}" height="{{ page.source_figure_height | default: 357 }}" style="max-width: {{ page.source_figure_width | default: 548 }}px" loading="lazy"><figcaption>{{ page.source_figure_caption }}</figcaption></figure>
+    <p><a href="{{ publication.link | relative_url }}">Read the full paper (PDF)</a> for methods, figures, results and references.</p>
+  </section>
+</article>
