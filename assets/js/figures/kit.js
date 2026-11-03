@@ -118,7 +118,13 @@
   Figure.prototype._hoverPlay = function () {
     var self = this, card = this.el.closest("[data-hover-play]");
     if (reduced || !card) return;
-    function start() { if (!self.playing) self.restart(true); }
+    function start() {
+      if (self.playing) return;
+      self.restart(true);
+      // Preview the active part of long explanations immediately.
+      self.t = self.cfg.previewStartAt || 0;
+      self.redraw();
+    }
     function off() { self.playing = false; self.last = 0; self.t = self.cfg.stillAt || 0; self.redraw(); self._sync(); }
     card.addEventListener("pointerenter", function (e) {
       if (canHover && e.pointerType === "mouse" && !card.classList.contains("is-open")) start();
@@ -189,7 +195,7 @@
     if (!this.playing) { this.last = 0; return; }
     var dt = this.last ? Math.min((now - this.last) / 1000, 0.1) : 0;
     this.last = now;
-    dt *= window.FIG_SPEED;
+    dt *= window.FIG_SPEED * (this.compact ? (this.cfg.previewSpeed || 1) : 1);
     this.t += dt;
     this._frame(dt);
   };

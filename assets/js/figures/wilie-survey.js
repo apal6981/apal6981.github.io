@@ -36,6 +36,8 @@
       },
       heatIn: 1.6,            // s for the heat map to fade in after the drive
       hold: 4,                // s the finished map stays up
+      previewStartAt: 1.5,   // start with a visible survey in progress
+      previewSpeed: 2.5,     // compact hover playback only
       stillAt: 20             // s: frame shown when motion is reduced (finished heat map)
     },
 

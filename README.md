@@ -118,3 +118,6 @@ Homepage work collections sort by year descending; numeric order is only the tie
 Preview links use data-hover-play. Mouse hover and visible keyboard focus start playback from the beginning, and mouse leave/focus loss restore stillAt. Initial reduced-motion preferences suppress previews; touch taps open the full disclosure. Do not hardcode a compact figure to a still pose while it is playing. The channel diagram includes a time cursor so the clean case visibly previews without altering its bit decisions.
 
 `scripts/browser-order-hover.cjs` checks ordering and all thirteen previews with real browser mouse movement, advancing timestamps and changed canvas pixels, then checks return-to-still, keyboard focus, touch and reduced motion. Captures/results go under ignored artifacts.
+
+
+Hover previews use per-figure pacing where needed: catcher and odometry play at 3x, and WiLiE at 2.5x, beginning in an active phase. Expanded figures retain their full explanatory timing.

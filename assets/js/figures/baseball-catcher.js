@@ -6,7 +6,7 @@
     return {x:lateral*q,y:.80+.10*q+(height-.90)*q*q};
   }
   Fig.register('baseball-catcher',{
-    config:{mobileAspect:.50,stillAt:5},
+    config:{mobileAspect:.50,stillAt:5,previewStartAt:1.5,previewSpeed:3},
     setup:function(f){f.state.pitch=0;f.button('Switch pitch',function(){f.state.pitch=(f.state.pitch+1)%3;f.restart(true);});},
     reset:function(){},
     draw:function(f,t){

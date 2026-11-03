@@ -2,7 +2,7 @@
 (function(){
   'use strict';var D=Fig.diagram;
   Fig.register('visual-odometry',{
-    config:{mobileAspect:.9,stillAt:8},
+    config:{mobileAspect:.9,stillAt:8,previewStartAt:2,previewSpeed:3},
     setup:function(f){
       f.state.drift=40;f.slider({label:'Illustrative drift',min:0,max:100,value:40,format:function(v){return v+'%';},onInput:function(v){f.state.drift=v;f.redraw();}});
     },

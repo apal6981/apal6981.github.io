@@ -19,6 +19,11 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');const fs=r
  const next=await page.evaluate(id=>{const f=Fig.instances.find(f=>f.compact&&f.el.dataset.fig===id);return {t:f.t,playing:f.playing,pixels:f.canvas.toDataURL()};},id);
  check(id+' hover advances time',first.playing&&next.playing&&next.t>first.t);
  check(id+' preview pixels animate',first.pixels!==next.pixels);
+ if(['baseball-catcher','visual-odometry','wilie-survey'].includes(id)){
+ check(id+' starts in active sequence',first.t>=1.5,{time:first.t});
+ check(id+' brisk preview pace',next.t-first.t>1.2,{elapsed:next.t-first.t});
+ await preview.screenshot({path:`artifacts/hover-active-${id}.png`});
+ }
  await page.mouse.move(0,0);await page.waitForTimeout(80);
  check(id+' mouse leave restores still',await page.evaluate(id=>{const f=Fig.instances.find(f=>f.compact&&f.el.dataset.fig===id);return !f.playing&&f.t===(f.cfg.stillAt||0);},id));
  }
