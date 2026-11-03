@@ -10,6 +10,7 @@ layout: base
     <p class="authors">{{ publication.authors }}</p>
     <p class="venue">{{ publication.venue }} · {{ publication.year }}</p>
     <a href="{{ publication.link | relative_url }}">Read the paper (PDF)</a>
+    {% for resource in publication.links %}{% if resource.text == "IEEE Xplore" %}<p><a href="{{ resource.url | escape }}">Published version on IEEE Xplore</a></p>{% endif %}{% endfor %}
   </header>
   <figure class="story-preview">
     <a href="{{ '/' | relative_url }}#details-{{ publication.slug }}" aria-label="Explore the interactive {{ publication.title | escape }} figure"><img src="{{ publication.figure | relative_url }}" alt="{{ publication.fig_label | escape }}" width="1040" height="585"></a>

@@ -16,6 +16,9 @@ fig_illustrative: true
 link: assets/papers/acoustic-localization.pdf
 link_label: Paper
 links:
+- text: IEEE Xplore
+  url: https://ieeexplore.ieee.org/document/11245189
+  note: Published version
 - text: Research background
   url: /publications/acoustic-localization/
 ---

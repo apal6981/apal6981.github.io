@@ -199,3 +199,12 @@ Implementation uses two collection documents, a reusable publication-background 
 ### Publication animation pacing refinement
 
 The owner requested faster acoustic and LoRa animation playback. Both now advance each filter stage every 0.3 seconds instead of 1.2 seconds, reducing a complete cycle from 3.6 to 0.9 seconds. Only these figures change speed. Step, play/pause and stop/resume controls remain available. Signal-map rendering is cached until the active beacon, figure dimensions or theme changes. Reduced-motion/thumbnail timing is retimed to preserve the previous still state.
+
+
+### Stationary cloud, satellite sidelobes and publisher links
+
+The owner requested a stable/tightening LoRa particle cloud while stopped, more spread on resuming motion, a clearer LEO sidelobe-interference illustration and IEEE links for the localization papers. Stopped-class motion hypotheses now use very small process jitter, allowing continued signal weighting/resampling to concentrate the cloud; moving hypotheses regain larger uncertainty. The synthetic classifier and field limitations remain explicit.
+
+The LEO illustration now distinguishes a main antenna lobe serving a separate user terminal from smaller off-axis sidelobes. The interfering lobe has a fixed angular offset from the antenna boresight and sweeps past the dish; no normal-pass cone or identification connector is aimed at the observatory. Outgoing arc wavefronts represent sidelobe leakage. Eve's ground replay remains a distinct directed attack. Mobile geometry is taller for the explanatory labels. The updated local PNG fallback replaces the older SVG as this entry's displayed still without deleting the original asset.
+
+Owner-supplied publisher URLs are added to homepage resources and local research pages: LoRa `https://ieeexplore.ieee.org/document/10801786`; acoustic `https://ieeexplore.ieee.org/document/11245189`. The user explicitly authorized these external destinations. IEEE blocked metadata retrieval with a JavaScript/robot-verification page or inaccessible response, so the destinations are preserved as supplied and not described as independently verified. Local PDFs remain available. No push or publication authorized.

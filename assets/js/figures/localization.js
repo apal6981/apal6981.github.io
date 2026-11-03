@@ -26,7 +26,9 @@
    s.heading=Math.atan2(dy,dx||.000001);s.command=Math.hypot(dx,dy);
    var moving=urban?s.movingProbability>.5:!s.halted;
    var magnitude=urban?(moving?.035:0):s.command;
-   var spread=urban?.008+.025*(1-Math.abs(s.movingProbability-.5)*2):.012;
+   var confidence=Math.abs(s.movingProbability-.5)*2;
+   // A stopped motion hypothesis adds only tiny jitter; RSS updates can tighten it.
+   var spread=urban?(moving?.012+.018*(1-confidence):.001+.003*s.movingProbability):.012;
    s.particles.forEach(function(p){var heading=s.heading+noise(s)*.15,d=magnitude+noise(s)*spread;p.x=Math.max(.02,Math.min(.98,p.x+d*Math.cos(heading)));p.y=Math.max(.02,Math.min(.98,p.y+d*Math.sin(heading)));});
    s.trace.push({x:s.truth.x,y:s.truth.y});
   }else if(s.stage===1){

@@ -28,6 +28,7 @@
 
   Fig.register("ghost-modulation-sky", {
     config: {
+      mobileAspect: 0.72, // space for main-lobe/user and sidelobe labels on mobile
       codeBits: 16,       // TOTP length in the Spectra header (paper, Sec. III-G)
       slice: 60,          // s, TOTP time slice (paper: one minute)
       seed: 9,            // stand-in for the shared seed; picks the code values (illustrative)
@@ -203,36 +204,68 @@
     ctx.strokeStyle = c.lineStrong; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(g.x, g.ground); ctx.lineTo(g.x + g.w, g.ground); ctx.stroke();
 
-    // satellites, their main beams to users, and Sat A's stray sidelobe
+    // The antenna boresight serves a separate user. Its sidelobe offset is fixed
+    // relative to that boresight, so it sweeps past the dish rather than tracking it.
     var pos = SATS.map(function (sat) { return satPos(f, L, sat, st.skyT); });
-    var sa = st.satAlpha;
-    SATS.forEach(function (sat, k) {
-      var p = pos[k], col = c[sat.tone];
-      // beams steer toward their users but only so far from straight down
-      var ux = g.x + (p.fx + U.clamp(sat.user - p.fx, -cfg.beamSteer, cfg.beamSteer)) * g.w, spread = 9 * u * big;
-      ctx.fillStyle = f.alpha(col, 0.13 * sa);
-      ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(ux - spread, g.ground); ctx.lineTo(ux + spread, g.ground); ctx.closePath(); ctx.fill();
-      ctx.fillStyle = f.alpha(col, 0.7 * sa);
-      ctx.fillRect(ux - 3 * u * big, g.ground - 2 * u, 6 * u * big, 3 * u);
+    var sa = st.satAlpha, mainA;
+    function userX(p,sat){return g.x+(p.fx+U.clamp(sat.user-p.fx,-cfg.beamSteer,cfg.beamSteer))*g.w;}
+    var midpoint=satPos(f,L,SATS[0],(cfg.normal.hit[0]+cfg.normal.hit[1])/2);
+    var sideOffset=Math.atan2(dish.y-18*u*big-midpoint.y,dish.x-midpoint.x)-Math.atan2(g.ground-midpoint.y,userX(midpoint,SATS[0])-midpoint.x);
+    function petal(p,angle,length,width,color,opacity){
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(angle);
+      ctx.beginPath();ctx.moveTo(0,0);ctx.bezierCurveTo(length*.45,-width,length,-width,length,0);
+      ctx.bezierCurveTo(length,width,length*.45,width,0,0);
+      ctx.fillStyle=f.alpha(color,opacity);ctx.fill();ctx.strokeStyle=f.alpha(color,Math.min(.75,opacity*3));ctx.lineWidth=1;ctx.stroke();ctx.restore();
+    }
+    SATS.forEach(function(sat,k){
+      var p=pos[k],col=c[sat.tone],ux=userX(p,sat),spread=(k===0?18:9)*u*big;
+      var angle=Math.atan2(g.ground-p.y,ux-p.x);
+      ctx.fillStyle=f.alpha(col,(k===0?.19:.07)*sa);
+      ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(ux-spread,g.ground);ctx.lineTo(ux+spread,g.ground);ctx.closePath();ctx.fill();
+      ctx.strokeStyle=f.alpha(col,k===0?.55:.2);ctx.lineWidth=1;
+      ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(ux,g.ground);ctx.stroke();
+      ctx.fillStyle=f.alpha(col,.8*sa);ctx.fillRect(ux-4*u*big,g.ground-5*u*big,8*u*big,5*u*big);
+      if(k===0){
+        mainA={x:ux,angle:angle,spread:spread};
+        petal(p,angle+sideOffset,55*u*big,9*u*big,col,.12+.15*st.env);
+        petal(p,angle-sideOffset,36*u*big,6*u*big,col,.10);
+        // Short antenna axis visually connects the lobes to the satellite hardware.
+        ctx.strokeStyle=col;ctx.lineWidth=2*u;
+        ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p.x+Math.cos(angle)*17*u*big,p.y+Math.sin(angle)*17*u*big);ctx.stroke();
+      }
     });
+    f.state.antenna={mainTargetX:mainA.x,dishX:dish.x,spread:mainA.spread,boresight:mainA.angle,sideOffset:sideOffset,sideAngle:mainA.angle+sideOffset};
+    if(!comp){
+      ctx.font=f.font(10.5*u,600);ctx.fillStyle=c.accent;ctx.textAlign="center";
+      var userLabel="User terminal",half=ctx.measureText(userLabel).width/2;
+      ctx.fillText(userLabel,U.clamp(mainA.x,g.x+half+3,g.x+g.w-half-3),g.ground+Math.max(31*u,28));
+      var mainLabel="Main lobe",mx=U.lerp(pos[0].x,mainA.x,.68),my=U.lerp(pos[0].y,g.ground,.68);
+      ctx.textAlign="left";ctx.fillText(mainLabel,U.clamp(mx+6*u,g.x+4,g.x+g.w-ctx.measureText(mainLabel).width-4),my);
+      var sideLabel="Sidelobe leakage",side=mainA.angle+sideOffset;
+      var sx=pos[0].x+Math.cos(side)*65*u,sy=pos[0].y+Math.sin(side)*65*u;
+      ctx.fillText(sideLabel,U.clamp(sx-ctx.measureText(sideLabel).width,g.x+4,g.x+g.w-ctx.measureText(sideLabel).width-4),sy+14*u);
+    }
 
-    // interference reaching the dish: Sat A's sidelobe, or Eve's replay
-    if (st.env > 0) {
-      var from = st.replay ? { x: eve.x, y: eve.y - 14 * u * big } : pos[0];
-      var col = st.replay ? c.ink2 : c.accent;
-      var hw = 15 * u * big;
-      ctx.fillStyle = f.alpha(col, 0.2 * st.env);
-      ctx.beginPath(); ctx.moveTo(from.x, from.y);
-      ctx.lineTo(dish.x - hw, dish.y - 26 * u * big); ctx.lineTo(dish.x + hw, dish.y - 10 * u * big); ctx.closePath(); ctx.fill();
-      // individual transmissions travelling to the dish
-      f.state.pulses.forEach(function (p) {
-        var k = (st.lt - (p.t - f.cfg.travel)) / f.cfg.travel;
-        if (k < 0 || k > 1) return;
-        var to = { x: dish.x, y: dish.y - 18 * u * big };
-        var x = U.lerp(from.x, to.x, k), y = U.lerp(from.y, to.y, k);
-        var ang = Math.atan2(to.y - from.y, to.x - from.x);
-        ctx.strokeStyle = f.alpha(col, 0.85 * st.env); ctx.lineWidth = (p.mark ? 2.4 : 1.4) * u * big;
-        ctx.beginPath(); ctx.arc(x, y, 7 * u * big, ang - 0.7, ang + 0.7); ctx.stroke();
+    // Normal interference radiates in the off-axis sidelobe sector. No cone is
+    // aimed at the observatory. Eve's separate ground-to-dish replay stays directed.
+    if(st.env>0){
+      var from=st.replay?{x:eve.x,y:eve.y-14*u*big}:pos[0];
+      var col=st.replay?c.ink2:c.accent;
+      var to={x:dish.x,y:dish.y-18*u*big};
+      if(st.replay){
+        ctx.fillStyle=f.alpha(col,.16*st.env);ctx.beginPath();ctx.moveTo(from.x,from.y);
+        ctx.lineTo(to.x-8*u*big,to.y);ctx.lineTo(to.x+8*u*big,to.y);ctx.closePath();ctx.fill();
+      }
+      f.state.pulses.forEach(function(p){
+        var k=(st.lt-(p.t-f.cfg.travel))/f.cfg.travel;if(k<0||k>1)return;
+        ctx.strokeStyle=f.alpha(col,.8*st.env);ctx.lineWidth=(p.mark?2.4:1.4)*u*big;
+        if(st.replay){
+          var x=U.lerp(from.x,to.x,k),y=U.lerp(from.y,to.y,k),angle=Math.atan2(to.y-from.y,to.x-from.x);
+          ctx.beginPath();ctx.arc(x,y,7*u*big,angle-.7,angle+.7);ctx.stroke();
+        }else{
+          var radius=U.lerp(22*u*big,Math.hypot(to.x-from.x,to.y-from.y),k),side=mainA.angle+sideOffset;
+          ctx.beginPath();ctx.arc(from.x,from.y,radius,side-.19,side+.19);ctx.stroke();
+        }
       });
     }
 
@@ -285,10 +318,6 @@
     // the culprit, named in its own color once the watermark is read
     if (!st.replay && st.idK > 0) {
       var a = pos[0];
-      ctx.strokeStyle = f.alpha(c.accent, 0.9 * st.idK); ctx.lineWidth = (comp ? 3.2 : 1.6) * u;
-      ctx.setLineDash([5 * u * big, 4 * u * big]);
-      ctx.beginPath(); ctx.moveTo(dish.x, dish.y - 30 * u * big); ctx.lineTo(a.x, a.y + (comp ? 46 : 20) * u); ctx.stroke();
-      ctx.setLineDash([]);
       ctx.strokeStyle = f.alpha(c.accent, st.idK); ctx.lineWidth = 2 * u * (comp ? 1.6 : 1);
       ctx.beginPath(); ctx.arc(a.x, a.y, (comp ? 46 : 20) * u, 0, Math.PI * 2); ctx.stroke();
       var label = comp ? "Sat A" : "Sat A: identified";

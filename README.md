@@ -93,3 +93,8 @@ With the existing local Jekyll/CDP setup and installed Playwright module, run `n
 
 
 Publication animation pacing: `localization.js` advances one phase every 0.3 seconds (0.9 seconds per full cycle). `stillAt: 3.75` preserves the earlier preview state at the faster cadence. The signal-field background is cached by beacon, dimensions and theme; moving particles and controls continue to redraw normally.
+
+
+LoRa stopped behavior now uses very small process jitter when the signal-history classifier selects stopped, so continued measurement updates can concentrate the particle cloud. Resuming motion restores greater propagation uncertainty. The illustration remains a toy model.
+
+The LEO figure separates the main antenna lobe (to a user terminal) from fixed-angle sidelobe leakage passing over the observatory. Its local fallback is `assets/figures/ghost-modulation.png`. `scripts/browser-ghost.cjs` checks this geometry and the normal/replay interaction; the intentional `--write-fallback` option exports the PNG. The two localization entries and research pages retain local PDFs and include the owner's supplied IEEE Xplore links.

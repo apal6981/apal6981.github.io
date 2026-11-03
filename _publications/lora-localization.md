@@ -16,6 +16,9 @@ fig_illustrative: true
 link: assets/papers/lora-localization.pdf
 link_label: Paper
 links:
+- text: IEEE Xplore
+  url: https://ieeexplore.ieee.org/document/10801786
+  note: Published version
 - text: Research background
   url: /publications/lora-localization/
 ---
